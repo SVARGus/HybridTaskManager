@@ -107,3 +107,60 @@
    Перед коммитом всегда делайте:  
    ```bash
    git pull --rebase
+
+---
+
+# C# Code Style Guide
+
+Ниже—ключевые правила по оформлению и организации C#-кода в проекте **«Гибридный таск менеджер»**, которые помогут сохранить единообразие и читабельность.
+
+
+## 1. Именование
+
+| Сущность           | Стиль                     | Пример                      |
+|--------------------|---------------------------|-----------------------------|
+| Классы, интерфейсы | PascalCase                | `TaskManager`, `IRepository` |
+| Методы             | PascalCase                | `CalculateDeadline()`       |
+| Свойства           | PascalCase                | `public string Title { get; set; }` |
+| Локальные переменные, параметры | camelCase     | `int retryCount`, `userName`|
+| Константы          | PascalCase или UPPER_CASE | `DefaultTimeout` или `MAX_RETRIES` |
+| Поля класса        | _camelCase (private) или camelCase (public) | `private int _currentUserId;` или `public int userId` |
+| Пространства имён  | PascalCase                | `HybridTaskManager.Services` |
+
+
+## 2. Форматирование
+
+- **Отступы:** 4 пробела, без табуляции.  
+- **Максимальная длина строки:** 120 символов.  
+- **Пустые строки:**  
+  - Между методами — одна пустая строка.  
+  - До/после region или групп using — одна пустая строка.  
+- **Скобки:**  
+  ```csharp
+  // Класс
+  public class Foo
+  {
+      // Метод
+      public void Bar()
+      {
+          if (condition)
+          {
+              DoSomething();
+          }
+          else
+          {
+              DoOther();
+          }
+      }
+  }
+- Открывающая `{` всегда на новой строке.
+- **Суффикс `Async`** для ассинхронных методов
+  ```csharp
+  public async Task<User> GetUserAsync(int id) { ... }
+- **LINQ** запросы
+  - Многострочные
+  ```csharp
+  var query = from user in users
+            where user.Age > 18
+            orderby user.Name
+            select user;
