@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="HybridTaskManager.UserConrols.KanbanColumnControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HybridTaskManager.UserConrols"
+             xmlns:models="clr-namespace:HybridTaskManager.DTO.DictionaryEntity"
+             Width="300" Margin="5">
+    <Border Background="#F0F0F0" BorderBrush="#CCC" BorderThickness="1" CornerRadius="6">
+        <DockPanel>
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="{Binding Status.Name}"
+           FontWeight="Bold" FontSize="14"
+           Padding="10" Background="#DDD"/>
+                <ItemsControl ItemsSource="{Binding Tasks}" DockPanel.Dock="Bottom" Margin="10">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <local:KanbanTaskCardControl DataContext="{Binding}" Margin="0,5" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </DockPanel>
+    </Border>
+</UserControl>
