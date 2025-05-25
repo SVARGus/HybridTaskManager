@@ -5,8 +5,114 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HybridTaskManager"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Hybrid Task Manager" MinHeight="600" MinWidth="1000"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized"
+        Background="White">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Border Background="#FF2D2D30" Padding="8">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
 
+                <Menu Grid.Column="0" VerticalAlignment="Center">
+                    <MenuItem Header="Меню">
+                        <MenuItem Header="Главная"/>
+                        <MenuItem Header="Настройка"/>
+                        <MenuItem Header="Выход"/>
+                    </MenuItem>
+                </Menu>
+
+                <Grid Grid.Column="1" Margin="16,0">
+                    <TextBox x:Name="SearchBox" VerticalAlignment="Center" Height="28" Padding="4" Margin="0" ToolTip="Поиск..."/>
+                </Grid>
+
+                <StackPanel Orientation="Horizontal" Grid.Column="2" VerticalAlignment="Center">
+                    <TextBlock Text="Компания XYZ" Foreground="White" VerticalAlignment="Center" Margin="0, 0, 12, 0"/>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Ellipse Width="32" Height="32" Fill="Gray" Margin="0, 0, 4, 0"/>
+                        <TextBlock Text="Иван Иванов" Foreground="White" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <DockPanel Grid.Column="0" Background="#FFF4F4F4">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Проекты" FontWeight="Bold" Margin="8"/>
+                    <ListBox x:Name="ProjectsList" Margin="8,0,8,8" DockPanel.Dock="Top" Height="200">
+                        <ListBoxItem Content="Проект A"/>
+                        <ListBoxItem Content="Проект B"/>
+                    </ListBox>
+
+                    <Separator/>
+
+                    <TextBlock Text="Сторонние сервисы" FontWeight="Bold" Margin="8"/>
+                    <ListBox x:Name="ServicesList" Margin="8" DockPanel.Dock="Bottom">
+                        <ListBoxItem Content="Jira"/>
+                        <ListBoxItem Content="Trello"/>
+                        <ListBoxItem Content="Asana"/>
+                    </ListBox>
+                </StackPanel>
+            </DockPanel>
+
+            <TabControl Grid.Column="1" x:Name="MainTabControl">
+                <TabItem Header="Канбан доска">
+                    <TabItem.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="Открыть в отдельном окне"/>
+                            <MenuItem Header="Обновить"/>
+                            <MenuItem Header="Настройки"/>
+                            <Separator/>
+                            <MenuItem Header="Закрыть вкладку"/>
+                        </ContextMenu>
+                    </TabItem.ContextMenu>
+                    <!-- Kanban board UserControl -->
+                </TabItem>
+
+                <TabItem Header="Календарь">
+                    <TabItem.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="Открыть в отдельном окне"/>
+                            <MenuItem Header="Обновить"/>
+                            <MenuItem Header="Настройки"/>
+                            <Separator/>
+                            <MenuItem Header="Закрыть вкладку"/>
+                        </ContextMenu>
+                    </TabItem.ContextMenu>
+                    <!-- Calendar UserControl -->
+                </TabItem>
+
+                <TabItem Header="Список задач">
+                    <TabItem.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="Открыть в отдельном окне"/>
+                            <MenuItem Header="Обновить"/>
+                            <MenuItem Header="Настройки"/>
+                            <Separator/>
+                            <MenuItem Header="Закрыть вкладку"/>
+                        </ContextMenu>
+                    </TabItem.ContextMenu>
+                    <!-- Tasks List UserControl -->
+                </TabItem>
+
+                <!-- Добавьте другие вкладки по необходимости -->
+            </TabControl>
+        </Grid>
+        
+        
     </Grid>
 </Window>
