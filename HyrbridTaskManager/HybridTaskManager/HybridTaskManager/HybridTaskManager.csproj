@@ -10,8 +10,7 @@
 
   <ItemGroup>
     <Folder Include="Art\Styles\" />
-    <Folder Include="Handlers\" />
-    <Folder Include="UserConrols\" />
+    <Folder Include="Новая папка\" />
   </ItemGroup>
 
 </Project>

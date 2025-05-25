@@ -14,9 +14,8 @@
             Id = Guid.NewGuid();
             Name = userRoleName;
             CanManageUsers = manageUsersPermission;
-            CanManageDictionaries = manageDictionaryPermission; 
+            CanManageDictionaries = manageDictionaryPermission;
             Name = string.Empty;
-
         }
     }
 }
