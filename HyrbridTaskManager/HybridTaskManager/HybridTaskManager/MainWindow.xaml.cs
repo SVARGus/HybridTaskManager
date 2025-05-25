@@ -8,6 +8,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using HybridTaskManager.DataBaseSimulation;
+using HybridTaskManager.UserConrols.TaskManageControls;
 
 namespace HybridTaskManager
 {
@@ -19,6 +21,8 @@ namespace HybridTaskManager
         public MainWindow()
         {
             InitializeComponent();
+            var Control = new ManageExistingTaskControl(TaskDataBase.TaskBase[0]);
+            this.Content = Control;
         }
     }
 

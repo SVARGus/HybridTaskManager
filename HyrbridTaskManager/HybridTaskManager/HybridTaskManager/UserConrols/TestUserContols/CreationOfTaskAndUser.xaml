@@ -1,0 +1,147 @@
+﻿<UserControl x:Class="HybridTaskManager.UserConrols.TestUserContols.CreationOfTaskAndUser"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HybridTaskManager.UserConrols.TestUserContols"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             Background="Azure"
+             >
+    <Border CornerRadius="5">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Grid.Column="0" Margin="5">
+                <Button x:Name="AddTaskButton"
+                        Content="AddTask" Click="AddTaskButton_Click">
+                    
+                </Button>
+            </Grid>
+            <Grid Grid.Row="0" Grid.Column="1" Grid.RowSpan="4">
+                <StackPanel>
+                    <Border>
+                        <TextBlock Text="Имя задачи"/>
+                    </Border>
+                    <Border>
+                        <TextBox x:Name="NewTasksName"/>
+                    </Border>
+                    <Border>
+                        <TextBlock Text="Описание задачи"/>
+                    </Border>
+                    <Border>
+                        <TextBox Name="TaskDescription"/>
+                    </Border>
+                    <Border>
+                        <TextBlock Text="К какому проекту принад"/>
+                    </Border>
+                    <Border>
+                        <ComboBox Name="Belonging">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </Border>
+                    <Border>
+                        <TextBlock Text="Статус задачи"/>
+                    </Border>
+                    <Border>
+                        <ComboBox Name="ChosenTaskStatus">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </Border>
+                    <Border>
+                        <TextBlock Text="Приоритет задачи"/>
+                    </Border>
+                    <Border>
+                        <ComboBox Name="NewTasksPriority">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </Border>
+                    <Border>
+                        <TextBlock Text="Тип задачи"/>
+                    </Border>
+                    <Border>
+                        <ComboBox Name="TasksType">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </Border>
+                    <Border>
+                        <TextBlock Text="Исполнитель"/>
+                    </Border>
+                    <Border>
+                        <ComboBox Name="TaskPerformer">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding UserName}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </Border>
+                    <Border>
+                        <TextBlock Text="Дата начала работы"/>
+                    </Border>
+                    <Border>
+                        <DatePicker Name="BeginDate"/>
+                    </Border>
+                    <Border>
+                        <TextBlock Text="Дата завершения работы"/>
+                    </Border>
+                    <Border>
+                        <DatePicker Name="DeadLineDate"/>
+                    </Border>
+                    <Border>
+                        <TextBlock Text="Дополнительный тег"/>
+                    </Border>
+                    <Border>
+                        <TextBox>
+                            
+                        </TextBox>
+                    </Border>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="0" Grid.Column="2" Grid.RowSpan="4" Grid.ColumnSpan="2">
+                <Border>
+                    <ListBox x:Name="CurrentTasks">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding Title}" Margin="5,0"/>
+                                        <TextBlock Text="{Binding Project.Name}" Margin="5,0"/>
+                                        <TextBlock Text="{Binding Status}" Margin="5,0"/>
+                                        <TextBlock Text="{Binding DeadLine, StringFormat=d}" Margin="5,0"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Border>
+            </Grid>
+        </Grid>
+    </Border>
+</UserControl>
