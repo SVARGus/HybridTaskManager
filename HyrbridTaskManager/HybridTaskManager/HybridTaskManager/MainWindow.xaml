@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HybridTaskManager"
+        xmlns:controls="clr-namespace:HybridTaskManager.UserConrols"
         mc:Ignorable="d"
         Title="Hybrid Task Manager" MinHeight="600" MinWidth="1000"
         WindowStartupLocation="CenterScreen"
@@ -112,7 +113,5 @@
                 <!-- Добавьте другие вкладки по необходимости -->
             </TabControl>
         </Grid>
-        
-        
     </Grid>
 </Window>
