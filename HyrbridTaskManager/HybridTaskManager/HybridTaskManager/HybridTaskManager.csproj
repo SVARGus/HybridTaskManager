@@ -10,7 +10,7 @@
 
   <ItemGroup>
     <Folder Include="Art\Styles\" />
-    <Folder Include="Новая папка\" />
+    <Folder Include="Handlers\" />
   </ItemGroup>
 
 </Project>
