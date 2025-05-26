@@ -21,8 +21,8 @@ namespace HybridTaskManager
         public MainWindow()
         {
             InitializeComponent();
-            var Control = new ManageExistingTaskControl(TaskDataBase.TaskBase[0]);
-            this.Content = Control;
+            //var Control = new ManageExistingTaskControl(TaskDataBase.TaskBase[0]);
+            //this.Content = Control;
         }
     }
 
