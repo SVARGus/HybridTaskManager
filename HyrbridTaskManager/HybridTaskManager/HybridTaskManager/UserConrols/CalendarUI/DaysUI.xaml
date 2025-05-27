@@ -10,12 +10,12 @@
              VerticalAlignment="Stretch">
 
     <Border Background="White"
-            CornerRadius="50"
+            CornerRadius="10"
             BorderBrush="Azure"
             BorderThickness="2"
             Padding="5">
 
-        <Grid>
+        <Grid ShowGridLines="True">
             
             <Grid.Resources>
                 <Style TargetType="Line">

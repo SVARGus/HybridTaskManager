@@ -126,13 +126,13 @@
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <Button Grid.Column="0" Content="+" FontSize="30"/>
-                            <Button Grid.Column="1" Content="+" FontSize="30"/>
-                            <Button Grid.Column="2" Content="+" FontSize="30"/>
-                            <Button Grid.Column="3" Content="+" FontSize="30"/>
-                            <Button Grid.Column="4" Content="+" FontSize="30"/>
-                            <Button Grid.Column="5" Content="+" FontSize="30"/>
-                            <Button Grid.Column="6" Content="+" FontSize="30"/>
+                            <Button Grid.Column="0" Content="+" FontSize="30" Click="Btn_Click"/>
+                            <Button Grid.Column="1" Content="+" FontSize="30" Click="Btn_Click"/>
+                            <Button Grid.Column="2" Content="+" FontSize="30" Click="Btn_Click"/>
+                            <Button Grid.Column="3" Content="+" FontSize="30" Click="Btn_Click"/>
+                            <Button Grid.Column="4" Content="+" FontSize="30" Click="Btn_Click"/>
+                            <Button Grid.Column="5" Content="+" FontSize="30" Click="Btn_Click"/>
+                            <Button Grid.Column="6" Content="+" FontSize="30" Click="Btn_Click"/>
                         </Grid>
 
                     </Border>
