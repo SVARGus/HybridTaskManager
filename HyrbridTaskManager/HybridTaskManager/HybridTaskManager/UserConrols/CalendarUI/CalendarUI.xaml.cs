@@ -160,6 +160,7 @@ namespace HybridTaskManager.UserConrols.CalendarUI
             };
 
             window.ShowDialog();
+
         }
 
         private static IEnumerable<T> FindVisualChildren<T>(DependencyObject depObj) where T : DependencyObject
