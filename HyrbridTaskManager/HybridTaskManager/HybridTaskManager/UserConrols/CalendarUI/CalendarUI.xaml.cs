@@ -1,4 +1,5 @@
 ﻿using HybridTaskManager.DataBaseSimulation;
+using HybridTaskManager.DTO.DictionaryEntity;
 using HybridTaskManager.UserConrols.TaskManageControls;
 using System;
 using System.Collections.Generic;
@@ -31,6 +32,57 @@ namespace HybridTaskManager.UserConrols.CalendarUI
             InitializeComponent();
             Loaded += CalendarUI_Loaded;
 
+        }
+
+        private List<TaskItem> GetTasksForWeek(DateTime weekStart)
+        {
+            DateTime weekEnd = weekStart.AddDays(6);
+
+            // Фильтрация по StartAt, так как именно это свойство задаёт начало задачи
+            return TaskDataBase.TaskBase
+                .Where(task => task.StartAt.Date >= weekStart.Date && task.StartAt.Date <= weekEnd.Date)
+                .ToList();
+        }
+
+        private void FillTasksGrid(DateTime weekStart)
+        {
+            var grid = CalendarBorder.Child as Grid;
+            if (grid == null) return;
+            grid.Children.Clear();
+
+            var tasks = GetTasksForWeek(weekStart);
+
+            // Группируем задачи по дате начала StartAt.Date
+            var tasksByDay = tasks.GroupBy(t => t.StartAt.Date).ToDictionary(g => g.Key, g => g.ToList());
+
+            for (int col = 0; col < 7; col++)
+            {
+                DateTime day = weekStart.AddDays(col).Date;
+
+                if (tasksByDay.TryGetValue(day, out var dayTasks))
+                {
+                    int row = 0;
+                    foreach (var task in dayTasks)
+                    {
+                        if (row >= grid.RowDefinitions.Count) break; // ограничение по строкам
+
+                        var tb = new TextBlock
+                        {
+                            Text = task.Title,
+                            Background = Brushes.LightBlue,
+                            Margin = new Thickness(2),
+                            Padding = new Thickness(4),
+                            TextWrapping = TextWrapping.Wrap
+                        };
+
+                        Grid.SetRow(tb, row);
+                        Grid.SetColumn(tb, col);
+                        grid.Children.Add(tb);
+
+                        row++;
+                    }
+                }
+            }
         }
 
         private void Btn_Click(object sender, RoutedEventArgs e)
@@ -67,12 +119,22 @@ namespace HybridTaskManager.UserConrols.CalendarUI
             }
         }
 
+        private DateTime GetStartOfWeek(DateTime date)
+        {
+            int diff = (7 + (date.DayOfWeek - DayOfWeek.Monday)) % 7;
+            return date.AddDays(-diff).Date;
+        }
+
         private void CalendarUI_Loaded(object sender, RoutedEventArgs e)
         {
             if (isInitialized) return;
             isInitialized = true;
 
             SetupWeekDays();
+
+            DateTime weekStart = GetStartOfWeek(DateTime.Today);
+            FillTasksGrid(weekStart);
+
 
             foreach (var btn in FindVisualChildren<Button>(ButtonBorder))
             {
