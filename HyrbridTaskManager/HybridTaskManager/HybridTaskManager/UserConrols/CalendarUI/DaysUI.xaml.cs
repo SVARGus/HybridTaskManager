@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace HybridTaskManager.UserConrols.CalendarMVVM
+namespace HybridTaskManager.UserConrols.CalendarUI
 {
     /// <summary>
-    /// Логика взаимодействия для DayItemContro.xaml
+    /// Логика взаимодействия для DaysUI.xaml
     /// </summary>
-    public partial class DayItemContro : UserControl
+    public partial class DaysUI : UserControl
     {
-        public DayItemContro()
+        public DaysUI()
         {
             InitializeComponent();
         }

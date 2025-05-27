@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace HybridTaskManager.UserConrols
+namespace HybridTaskManager.UserConrols.CalendarUI
 {
     /// <summary>
     /// Логика взаимодействия для CalendarUI.xaml
