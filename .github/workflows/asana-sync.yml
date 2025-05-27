@@ -1,0 +1,29 @@
+name: Sync with Asana
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  sync-task:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Extract task ID from PR description
+        id: extract_task_id
+        env:
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: |
+          # Ищем ссылку на задачу Asana в формате https://app.asana.com/0/<project_id>/<task_id>
+          TASK_ID=$(echo "$PR_BODY" | grep -o 'https://app.asana.com/[0-9]*/[0-9]*/[0-9]*' | cut -d '/' -f 6)
+          echo "task_id=$TASK_ID" >> $GITHUB_OUTPUT
+
+      - name: Update Asana task
+        env:
+          ASANA_TOKEN: ${{ secrets.ASANA_TOKEN }}
+        run: |
+          # Отправляем запрос к Asana API для обновления задачи
+          curl -X PUT \
+            -H "Authorization: Bearer $ASANA_TOKEN" \
+            -H "Content-Type: application/json" \
+            "https://app.asana.com/api/1.0/tasks/${{ steps.extract_task_id.outputs.task_id }}" \
+            -d '{"completed": true}'
