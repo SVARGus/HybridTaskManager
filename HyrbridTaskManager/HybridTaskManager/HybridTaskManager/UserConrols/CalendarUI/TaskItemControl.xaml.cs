@@ -23,7 +23,7 @@ namespace HybridTaskManager.UserConrols.CalendarUI
         public static readonly DependencyProperty TitleProperty =
             DependencyProperty.Register(nameof(Title), typeof(string), typeof(TaskItemControl));
 
-        
+        // Можно добавить и другие свойства: Description, StartAt, DeadLine и т.д.
 
         public string Title
         {
@@ -34,7 +34,7 @@ namespace HybridTaskManager.UserConrols.CalendarUI
         public TaskItemControl()
         {
             InitializeComponent();
-            DataContext = this; 
+            DataContext = this; // чтобы биндинг сработал на зависимости
         }
     }
 }
