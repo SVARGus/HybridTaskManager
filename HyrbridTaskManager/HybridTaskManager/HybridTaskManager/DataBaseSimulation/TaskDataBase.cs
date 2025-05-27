@@ -13,6 +13,7 @@ namespace HybridTaskManager.DataBaseSimulation
         public static ObservableCollection<TaskItem> TaskBase = new ObservableCollection<TaskItem>
 {
     // ПОНЕДЕЛЬНИК
+
     new TaskItem("Понедельник Задача 1", "Описание", ProjectDataBase.Projects[0],
         StatusTypeDataBase.TaskStatuses[0], TaskTypesDataBase.TaskTypes[0],
         TaskPriorityDataBase.TaskPriorities[0], UserDataBase.Users[0], UserDataBase.Users[1],
