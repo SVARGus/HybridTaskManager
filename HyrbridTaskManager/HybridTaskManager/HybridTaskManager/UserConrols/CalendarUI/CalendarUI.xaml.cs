@@ -37,11 +37,17 @@ namespace HybridTaskManager.UserConrols.CalendarUI
         private List<TaskItem> GetTasksForWeek(DateTime weekStart)
         {
             DateTime weekEnd = weekStart.AddDays(6);
-
-            
-            return TaskDataBase.TaskBase
-                .Where(task => task.StartAt.Date >= weekStart.Date && task.StartAt.Date <= weekEnd.Date)
-                .ToList();
+            try
+            {
+                return TaskDataBase.TaskBase
+                    .Where(task => task.StartAt.Date >= weekStart.Date && task.StartAt.Date <= weekEnd.Date)
+                    .ToList();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка: {ex.Message}\n\nStackTrace:\n{ex.StackTrace}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return new List<TaskItem>();
+            }
         }
 
         private void FillTasksGrid(DateTime weekStart)
@@ -115,7 +121,7 @@ namespace HybridTaskManager.UserConrols.CalendarUI
                             Text = $"Ответственный: {task.AssignedTo?.UserName ?? "Не указан"}"
                         });
 
-                        
+                        // Используем явный ToolTip
                         var toolTip = new ToolTip
                         {
                             Content = tooltipPanel,
