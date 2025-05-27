@@ -6,13 +6,43 @@
              xmlns:local="clr-namespace:HybridTaskManager.UserConrols.CalendarUI"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    
-    
-    
-    
-    
-    
-    
+
+
+    <UserControl.Resources>
+        <Style x:Key="RoundButtonStyle" TargetType="Button">
+            <Setter Property="Width" Value="35"/>
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="Background" Value="#FF696969"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Content" Value="+"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Ellipse Fill="{TemplateBinding Background}"/>
+                            <ContentPresenter HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"
+                                          RecognizesAccessKey="True"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF808080"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+
+
+
     <Border Background="White"
          BorderThickness="1">
 
@@ -133,13 +163,13 @@
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <Button Grid.Column="0" Content="+" FontSize="30" />
-                            <Button Grid.Column="1" Content="+" FontSize="30" />
-                            <Button Grid.Column="2" Content="+" FontSize="30" />
-                            <Button Grid.Column="3" Content="+" FontSize="30" />
-                            <Button Grid.Column="4" Content="+" FontSize="30" />
-                            <Button Grid.Column="5" Content="+" FontSize="30" />
-                            <Button Grid.Column="6" Content="+" FontSize="30" />
+                            <Button Grid.Column="0" Style="{StaticResource RoundButtonStyle}" />
+                            <Button Grid.Column="1" Style="{StaticResource RoundButtonStyle}" />
+                            <Button Grid.Column="2" Style="{StaticResource RoundButtonStyle}" />
+                            <Button Grid.Column="3" Style="{StaticResource RoundButtonStyle}" />
+                            <Button Grid.Column="4" Style="{StaticResource RoundButtonStyle}" />
+                            <Button Grid.Column="5" Style="{StaticResource RoundButtonStyle}" />
+                            <Button Grid.Column="6" Style="{StaticResource RoundButtonStyle}" />
                         </Grid>
 
                     </Border>
