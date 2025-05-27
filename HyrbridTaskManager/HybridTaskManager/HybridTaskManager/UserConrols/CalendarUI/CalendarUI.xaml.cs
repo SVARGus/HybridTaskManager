@@ -29,7 +29,6 @@ namespace HybridTaskManager.UserConrols.CalendarUI
         public CalendarUI()
         {
             InitializeComponent();
-            
             Loaded += CalendarUI_Loaded;
 
         }
