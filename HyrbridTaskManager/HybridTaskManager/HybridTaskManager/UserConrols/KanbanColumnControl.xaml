@@ -7,8 +7,26 @@
              xmlns:models="clr-namespace:HybridTaskManager.DTO.DictionaryEntity"
              Width="300" Margin="5">
     <Border Background="#F0F0F0" BorderBrush="#CCC" BorderThickness="1" CornerRadius="6">
+        <Border.ContextMenu>
+            <ContextMenu>
+                <MenuItem x:Name="AddTask_ClickMenu" Header="Добавить задачку" Click="AddTask_Click"/>
+                <MenuItem x:Name="RenameColumn_Click" Header="Переименовать" Click="RenameColumn_Click"/>
+                <MenuItem x:Name="DeleteColumn_Click" Header="Удалить" Click="DeleteColumn_Click"/>
+                <MenuItem x:Name="RefreshColumn_Click" Header="Обновить" Click="RefreshColumn_Click"/>
+                <MenuItem x:Name="CopyColumn_Click" Header="Копировать" Click="CopyColumn_Click"/>
+            </ContextMenu>
+        </Border.ContextMenu>
+        
         <DockPanel>
             <StackPanel Orientation="Vertical">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="{Binding Status.Name}" FontWeight="Bold" FontSize="14" Padding="10" Background="#DDD" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
+                    <Button Grid.Column="1" x:Name="AddTask_Click" Content="＋" Width="24" Height="24" Margin="5,0,5,0" ToolTip="Добавить задачу" HorizontalAlignment="Right"/>
+                </Grid>
                 <TextBlock Text="{Binding Status.Name}"
            FontWeight="Bold" FontSize="14"
            Padding="10" Background="#DDD"/>

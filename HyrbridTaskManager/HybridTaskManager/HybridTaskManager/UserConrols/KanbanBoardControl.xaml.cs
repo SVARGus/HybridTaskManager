@@ -21,5 +21,20 @@ namespace HybridTaskManager.UserConrols
         {
             InitializeComponent();
         }
+
+        private void AddColumn_Click(object sender, RoutedEventArgs e)
+        {
+            // TODO: Добавить новую колонку в доску
+        }
+
+        private void RefreshBoard_Click(object sender, RoutedEventArgs e)
+        {
+            // TODO: Обновить данные всей доски
+        }
+
+        private void Settings_Click(object sender, RoutedEventArgs e)
+        {
+            // TODO: Открыть окно настроек доски
+        }
     }
 }

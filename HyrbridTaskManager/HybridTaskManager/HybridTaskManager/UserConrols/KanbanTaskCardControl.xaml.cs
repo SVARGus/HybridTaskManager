@@ -24,5 +24,25 @@ namespace HybridTaskManager.UserConrols
         {
             InitializeComponent();
         }
+
+        private void OpenTask_Click(object sender, RoutedEventArgs e)
+        {
+            // TODO: Открыть карточку задачи в отдельном окне или области
+        }
+
+        private void DeleteTask_Click(object sender, RoutedEventArgs e)
+        {
+            // TODO: Удалить текущую задачу
+        }
+
+        private void CopyTask_Click(object sender, RoutedEventArgs e)
+        {
+            // TODO: Копировать данные задачи
+        }
+
+        private void MoveTask_Click(object sender, RoutedEventArgs e)
+        {
+            // TODO: Переместить задачу в другую колонку
+        }
     }
 }
