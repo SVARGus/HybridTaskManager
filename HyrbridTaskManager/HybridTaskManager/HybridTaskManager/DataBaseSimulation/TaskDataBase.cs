@@ -18,7 +18,7 @@ namespace HybridTaskManager.DataBaseSimulation
         StatusTypeDataBase.TaskStatuses[0], TaskTypesDataBase.TaskTypes[0],
         TaskPriorityDataBase.TaskPriorities[0], UserDataBase.Users[0], UserDataBase.Users[1],
         DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + 1), // Monday
-        DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + 1).AddHours(3)),
+        DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + 4).AddHours(3)),
 
     new TaskItem("Понедельник Задача 2", "Описание", ProjectDataBase.Projects[1],
         StatusTypeDataBase.TaskStatuses[1], TaskTypesDataBase.TaskTypes[1],

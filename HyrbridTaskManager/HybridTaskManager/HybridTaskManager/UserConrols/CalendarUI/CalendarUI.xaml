@@ -128,7 +128,7 @@
                                Background="White"
                                BorderBrush="LightGray"
                                BorderThickness="1">
-                        <Grid ShowGridLines="True">
+                        <Grid ShowGridLines="False">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
