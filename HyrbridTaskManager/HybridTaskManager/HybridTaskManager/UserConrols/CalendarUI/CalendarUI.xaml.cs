@@ -56,93 +56,90 @@ namespace HybridTaskManager.UserConrols.CalendarUI
             if (grid == null) return;
             grid.Children.Clear();
 
+            DateTime weekEnd = weekStart.AddDays(6);
             var tasks = GetTasksForWeek(weekStart);
-            var tasksByDay = tasks.GroupBy(t => t.StartAt.Date).ToDictionary(g => g.Key, g => g.ToList());
 
-            for (int col = 0; col < 7; col++)
+            
+            Dictionary<int, List<int>> dayRowMap = new Dictionary<int, List<int>>();
+            for (int i = 0; i < 7; i++)
+                dayRowMap[i] = new List<int>();
+
+            foreach (var task in tasks.OrderBy(t => t.StartAt))
             {
-                DateTime day = weekStart.AddDays(col).Date;
+                int startOffset = (task.StartAt.Date - weekStart.Date).Days;
+                int endOffset = (task.DeadLine.Date - weekStart.Date).Days;
 
-                if (tasksByDay.TryGetValue(day, out var dayTasks))
+                if (startOffset < 0 || startOffset > 6) continue;
+                if (endOffset < 0) continue;
+
+                int column = Math.Max(0, startOffset);
+                int columnSpan = Math.Min(6 - column + 1, endOffset - column + 1);
+
+                if (columnSpan <= 0) columnSpan = 1;
+
+                
+                int row = 0;
+                while (true)
                 {
-                    int row = 0;
-                    foreach (var task in dayTasks)
+                    bool intersects = false;
+                    for (int c = column; c < column + columnSpan; c++)
                     {
-                        if (row >= grid.RowDefinitions.Count) break;
-
-                        var tb = new TextBlock
+                        if (dayRowMap[c].Contains(row))
                         {
-                            Text = task.Title,
-                            Background = Brushes.LightBlue,
-                            Margin = new Thickness(2),
-                            Padding = new Thickness(4),
-                            TextWrapping = TextWrapping.Wrap,
-                            IsEnabled = true // на всякий случай
-                        };
-
-                        // Создаем ToolTip с детальной информацией по задаче
-                        var tooltipPanel = new StackPanel();
-
-                        tooltipPanel.Children.Add(new TextBlock
-                        {
-                            Text = $"Заголовок: {task.Title}",
-                            FontWeight = FontWeights.Bold
-                        });
-
-                        tooltipPanel.Children.Add(new TextBlock
-                        {
-                            Text = $"Описание: {task.Description}",
-                            TextWrapping = TextWrapping.Wrap,
-                            MaxWidth = 300
-                        });
-
-                        tooltipPanel.Children.Add(new TextBlock
-                        {
-                            Text = $"Начало: {task.StartAt:G}"
-                        });
-
-                        tooltipPanel.Children.Add(new TextBlock
-                        {
-                            Text = $"Дедлайн: {task.DeadLine:G}"
-                        });
-
-                        tooltipPanel.Children.Add(new TextBlock
-                        {
-                            Text = $"Статус: {task.Status?.Name ?? "Не указан"}"
-                        });
-
-                        tooltipPanel.Children.Add(new TextBlock
-                        {
-                            Text = $"Приоритет: {task.Priority?.Name ?? "Не указан"}"
-                        });
-
-                        tooltipPanel.Children.Add(new TextBlock
-                        {
-                            Text = $"Ответственный: {task.AssignedTo?.UserName ?? "Не указан"}"
-                        });
-
-                        // Используем явный ToolTip
-                        var toolTip = new ToolTip
-                        {
-                            Content = tooltipPanel,
-                            Background = Brushes.LightYellow,
-                            BorderBrush = Brushes.Gray,
-                            BorderThickness = new Thickness(1),
-                            Placement = System.Windows.Controls.Primitives.PlacementMode.Mouse
-                        };
-
-                        tb.ToolTip = toolTip;
-
-                       
-                        ToolTipService.SetShowDuration(tb, 10000);
-
-                        Grid.SetRow(tb, row);
-                        Grid.SetColumn(tb, col);
-                        grid.Children.Add(tb);
-
-                        row++;
+                            intersects = true;
+                            break;
+                        }
                     }
+
+                    if (!intersects) break;
+                    row++;
                 }
+
+                
+                for (int c = column; c < column + columnSpan; c++)
+                {
+                    dayRowMap[c].Add(row);
+                }
+
+               
+                var tb = new TextBlock
+                {
+                    Text = task.Title,
+                    Background = Brushes.LightSkyBlue,
+                    Margin = new Thickness(2),
+                    Padding = new Thickness(4),
+                    TextWrapping = TextWrapping.Wrap
+                };
+
+                
+                var tooltipPanel = new StackPanel();
+                tooltipPanel.Children.Add(new TextBlock { Text = $"Заголовок: {task.Title}", FontWeight = FontWeights.Bold });
+                tooltipPanel.Children.Add(new TextBlock { Text = $"Описание: {task.Description}", TextWrapping = TextWrapping.Wrap });
+                tooltipPanel.Children.Add(new TextBlock { Text = $"Начало: {task.StartAt:G}" });
+                tooltipPanel.Children.Add(new TextBlock { Text = $"Дедлайн: {task.DeadLine:G}" });
+                tooltipPanel.Children.Add(new TextBlock { Text = $"Статус: {task.Status?.Name ?? "Не указан"}" });
+                tooltipPanel.Children.Add(new TextBlock { Text = $"Приоритет: {task.Priority?.Name ?? "Не указан"}" });
+                tooltipPanel.Children.Add(new TextBlock { Text = $"Ответственный: {task.AssignedTo?.UserName ?? "Не указан"}" });
+
+                tb.ToolTip = new ToolTip
+                {
+                    Content = tooltipPanel,
+                    Background = Brushes.LightYellow,
+                    Placement = System.Windows.Controls.Primitives.PlacementMode.Mouse
+                };
+
+                ToolTipService.SetShowDuration(tb, 10000);
+
+                
+                if (row >= grid.RowDefinitions.Count)
+                {
+                    grid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+                }
+
+                Grid.SetRow(tb, row);
+                Grid.SetColumn(tb, column);
+                Grid.SetColumnSpan(tb, columnSpan);
+                grid.Children.Add(tb);
             }
         }
 

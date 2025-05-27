@@ -57,7 +57,7 @@ namespace HybridTaskManager.DataBaseSimulation
         StatusTypeDataBase.TaskStatuses[2], TaskTypesDataBase.TaskTypes[0],
         TaskPriorityDataBase.TaskPriorities[2], UserDataBase.Users[0], UserDataBase.Users[1],
         DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + 4),
-        DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + 4).AddHours(3)),
+        DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + 5).AddHours(3)),
 
     new TaskItem("Четверг Задача 2", "Описание", ProjectDataBase.Projects[1],
         StatusTypeDataBase.TaskStatuses[3], TaskTypesDataBase.TaskTypes[1],
@@ -76,14 +76,14 @@ namespace HybridTaskManager.DataBaseSimulation
         StatusTypeDataBase.TaskStatuses[1], TaskTypesDataBase.TaskTypes[1],
         TaskPriorityDataBase.TaskPriorities[1], UserDataBase.Users[0], UserDataBase.Users[1],
         DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + 5).AddHours(4),
-        DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + 5).AddHours(6)),
+        DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + 6).AddHours(6)),
 
     // СУББОТА
     new TaskItem("Суббота Задача 1", "Описание", ProjectDataBase.Projects[1],
         StatusTypeDataBase.TaskStatuses[2], TaskTypesDataBase.TaskTypes[0],
         TaskPriorityDataBase.TaskPriorities[2], UserDataBase.Users[1], UserDataBase.Users[2],
         DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + 6),
-        DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + 6).AddHours(3)),
+        DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + 7).AddHours(3)),
 
     new TaskItem("Суббота Задача 2", "Описание", ProjectDataBase.Projects[2],
         StatusTypeDataBase.TaskStatuses[3], TaskTypesDataBase.TaskTypes[1],
