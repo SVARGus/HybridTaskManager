@@ -23,11 +23,43 @@ namespace HybridTaskManager.UserConrols.CalendarUI
         public CalendarUI()
         {
             InitializeComponent();
+            Loaded += CalendarUI_Loaded;
         }
 
-        private void DaysUI_Loaded(object sender, RoutedEventArgs e)
+        private void CalendarUI_Loaded(object sender, RoutedEventArgs e)
         {
+            SetupWeekDays();
+        }
 
+        private void SetupWeekDays()
+        {
+            DateTime today = DateTime.Today;
+            int currentDayIndex = (int)today.DayOfWeek;
+            currentDayIndex = currentDayIndex == 0 ? 7 : currentDayIndex; // Sunday => 7
+
+            // Получаем Grid из Border
+            var dayGrid = DayBorder.Child as Grid;
+            if (dayGrid == null) return;
+
+            for (int col = 0; col < 7; col++)
+            {
+                DateTime dayDate = today.AddDays(col - currentDayIndex + 1);
+
+                if (GetChildByColumn(dayGrid, col) is DaysUI dayUI)
+                {
+                    dayUI.SetDateInfo(dayDate);
+                }
+            }
+        }
+
+        private UIElement GetChildByColumn(Grid grid, int column)
+        {
+            foreach (UIElement child in grid.Children)
+            {
+                if (Grid.GetColumn(child) == column)
+                    return child;
+            }
+            return null;
         }
     }
 }

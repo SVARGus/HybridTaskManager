@@ -17,10 +17,8 @@
                 <ColumnDefinition Width="7*"/>
             </Grid.ColumnDefinitions>
 
-            <Border Grid.Column="1"
-                 BorderThickness="1"
-                 BorderBrush="Black"
-                 CornerRadius="3">
+            <Border Grid.Column="1">
+
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="41*"/>
@@ -30,9 +28,10 @@
                     </Grid.RowDefinitions>
 
                     <Border Grid.Row="1"
-                         Background="#FFD8BFD8"
+                         Background="#FF696969"
                          BorderThickness="1"
-                         BorderBrush="Black" Margin="0,0,0,5">
+                         BorderBrush="Black" Margin="0,0,0,5"
+                         x:Name="DayBorder">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -72,9 +71,63 @@
                                           VerticalAlignment="Stretch"
                                           Grid.Column="6"/>
 
+
+                            
+
                         </Grid>
 
+                    </Border>
 
+                    <Border Grid.Row="2" 
+                             x:Name="CalendarBorder"
+                               Background="White"
+                               BorderBrush="LightGray"
+                               BorderThickness="1">
+                        <Grid ShowGridLines="True">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                        </Grid>
+                        
+                    </Border>
+
+                    <Border x:Name="ButtonBorder"
+                            Grid.Row="3">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Button Grid.Column="0" Content="+" FontSize="30"/>
+                            <Button Grid.Column="1" Content="+" FontSize="30"/>
+                            <Button Grid.Column="2" Content="+" FontSize="30"/>
+                            <Button Grid.Column="3" Content="+" FontSize="30"/>
+                            <Button Grid.Column="4" Content="+" FontSize="30"/>
+                            <Button Grid.Column="5" Content="+" FontSize="30"/>
+                            <Button Grid.Column="6" Content="+" FontSize="30"/>
+                        </Grid>
+                        
                     </Border>
 
                 </Grid>

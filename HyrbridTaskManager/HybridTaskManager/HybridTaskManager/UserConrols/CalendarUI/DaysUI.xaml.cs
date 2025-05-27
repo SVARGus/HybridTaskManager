@@ -23,6 +23,16 @@ namespace HybridTaskManager.UserConrols.CalendarUI
         public DaysUI()
         {
             InitializeComponent();
+            SetDateInfo();
+        }
+
+        public void SetDateInfo(DateTime? date = null)
+        {
+            DateTime currentDate = date ?? DateTime.Now;
+
+            DayOfWeekText.Text = currentDate.ToString("dddd"); // e.g., Monday
+            DayNumberText.Text = currentDate.Day.ToString();    // e.g., 27
+            MonthText.Text = currentDate.ToString("MMMM");     // e.g., May
         }
     }
 }

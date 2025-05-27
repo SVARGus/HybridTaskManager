@@ -5,64 +5,65 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HybridTaskManager.UserConrols.CalendarUI"
              mc:Ignorable="d" 
-             d:DesignHeight="50" d:DesignWidth="100">
-
+             d:DesignHeight="100" d:DesignWidth="100"
+             HorizontalAlignment="Stretch" 
+             VerticalAlignment="Stretch">
 
     <Border Background="White"
-        CornerRadius="150"
-        BorderBrush="Azure"
-        BorderThickness="10">
+            CornerRadius="50"
+            BorderBrush="Azure"
+            BorderThickness="2"
+            Padding="5">
 
         <Grid>
+            <!-- Единый стиль границ -->
+            <Grid.Resources>
+                <Style TargetType="Line">
+                    <Setter Property="Stroke" Value="Azure"/>
+                    <Setter Property="StrokeThickness" Value="2"/>
+                </Style>
+            </Grid.Resources>
+
             <Grid.RowDefinitions>
-                <RowDefinition/>
-                
-                <RowDefinition/>
-                
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
            
-            <TextBlock Grid.Row="0"
-                   Text="День Недели"
-                   FontSize="12"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"/>
+            <TextBlock x:Name="DayOfWeekText" Grid.Row="0"
+                       Text="День Недели"
+                       FontSize="12"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"/>
 
             
-            <Line Grid.Row="0"
-              X1="0" Y1="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
-              X2="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Grid}}"
-              Y2="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
-              Stroke="Black"
-              StrokeThickness="3"
-              VerticalAlignment="Bottom"/>
+            <Line Grid.Row="1"
+                  X1="0" X2="1"
+                  Stretch="Fill"
+                  Margin="5,0"/>
 
-            
-            <Grid Grid.Row="1">
+           
+            <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                   
-                    <ColumnDefinition/>
-                   
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Column="0"
+                <TextBlock x:Name="DayNumberText" Grid.Column="0"
                        Text="30"
                        FontSize="12"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"/>
 
-               
-                <Line Grid.Column="0"
-                  X1="{Binding ActualWidth, RelativeSource={RelativeSource Self}}"
-                  Y1="0"
-                  X2="{Binding ActualWidth, RelativeSource={RelativeSource Self}}"
-                  Y2="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=Grid}}"
-                  Stroke="Black"
-                  StrokeThickness="3"
-                  HorizontalAlignment="Right"/>
+                
+                <Line Grid.Column="1"
+                      Y1="0" Y2="1"
+                      Stretch="Fill"
+                      Margin="0,5"/>
 
-                <TextBlock Grid.Column="1"
+                <TextBlock x:Name="MonthText" Grid.Column="2"
                        Text="Май"
                        FontSize="12"
                        HorizontalAlignment="Center"
