@@ -45,31 +45,38 @@
 
                             <local:DaysUI HorizontalAlignment="Stretch"
                                           VerticalAlignment="Stretch"
-                                          Grid.Column="0"/>
+                                          Grid.Column="0"
+                                          Loaded="CalendarUI_Loaded"/>
 
                             <local:DaysUI HorizontalAlignment="Stretch"
                                           VerticalAlignment="Stretch"
-                                          Grid.Column="1" Loaded="DaysUI_Loaded"/>
+                                          Grid.Column="1" 
+                                          Loaded="CalendarUI_Loaded"/>
 
                             <local:DaysUI HorizontalAlignment="Stretch"
                                           VerticalAlignment="Stretch"
-                                          Grid.Column="2"/>
+                                          Grid.Column="2"
+                                          Loaded="CalendarUI_Loaded"/>
 
                              <local:DaysUI HorizontalAlignment="Stretch"
                                            VerticalAlignment="Stretch"
-                                           Grid.Column="3"/>
+                                           Grid.Column="3"
+                                           Loaded="CalendarUI_Loaded"/>
 
                             <local:DaysUI HorizontalAlignment="Stretch"
                                           VerticalAlignment="Stretch"
-                                          Grid.Column="4"/>
+                                          Grid.Column="4"
+                                          Loaded="CalendarUI_Loaded"/>
 
                             <local:DaysUI HorizontalAlignment="Stretch"
                                           VerticalAlignment="Stretch"
-                                          Grid.Column="5"/>
+                                          Grid.Column="5"
+                                          Loaded="CalendarUI_Loaded"/>
 
                             <local:DaysUI HorizontalAlignment="Stretch"
                                           VerticalAlignment="Stretch"
-                                          Grid.Column="6"/>
+                                          Grid.Column="6"
+                                          Loaded="CalendarUI_Loaded"/>
 
 
                             

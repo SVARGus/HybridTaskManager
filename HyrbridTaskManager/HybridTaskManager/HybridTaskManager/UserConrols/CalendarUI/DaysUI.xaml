@@ -16,7 +16,7 @@
             Padding="5">
 
         <Grid>
-            <!-- Единый стиль границ -->
+            
             <Grid.Resources>
                 <Style TargetType="Line">
                     <Setter Property="Stroke" Value="Azure"/>
