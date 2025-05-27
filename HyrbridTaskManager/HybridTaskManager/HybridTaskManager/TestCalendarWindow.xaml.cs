@@ -10,24 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace HybridTaskManager.UserConrols.CalendarUI
+namespace HybridTaskManager
 {
     /// <summary>
-    /// Логика взаимодействия для CalendarUI.xaml
+    /// Логика взаимодействия для TestCalendarWindow.xaml
     /// </summary>
-    public partial class CalendarUI : UserControl
+    public partial class TestCalendarWindow : Window
     {
-        public CalendarUI()
+        public TestCalendarWindow()
         {
             InitializeComponent();
-        }
-
-        private void DaysUI_Loaded(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }
