@@ -81,7 +81,7 @@
                             <MenuItem Header="Закрыть вкладку"/>
                         </ContextMenu>
                     </TabItem.ContextMenu>
-                    <!-- Kanban board UserControl -->
+                    <controls:KanbanBoardControl x:Name="KanbanBoard"/>
                 </TabItem>
 
                 <TabItem Header="Календарь">
@@ -94,7 +94,7 @@
                             <MenuItem Header="Закрыть вкладку"/>
                         </ContextMenu>
                     </TabItem.ContextMenu>
-                    <!-- Calendar UserControl -->
+                    <controls:CalendarUI x:Name="CalendarControl"/>
                 </TabItem>
 
                 <TabItem Header="Список задач">
