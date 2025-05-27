@@ -38,7 +38,7 @@ namespace HybridTaskManager.UserConrols.CalendarUI
         {
             DateTime weekEnd = weekStart.AddDays(6);
 
-            // Фильтрация по StartAt, так как именно это свойство задаёт начало задачи
+            
             return TaskDataBase.TaskBase
                 .Where(task => task.StartAt.Date >= weekStart.Date && task.StartAt.Date <= weekEnd.Date)
                 .ToList();
@@ -52,7 +52,7 @@ namespace HybridTaskManager.UserConrols.CalendarUI
 
             var tasks = GetTasksForWeek(weekStart);
 
-            // Группируем задачи по дате начала StartAt.Date
+           
             var tasksByDay = tasks.GroupBy(t => t.StartAt.Date).ToDictionary(g => g.Key, g => g.ToList());
 
             for (int col = 0; col < 7; col++)
@@ -64,7 +64,7 @@ namespace HybridTaskManager.UserConrols.CalendarUI
                     int row = 0;
                     foreach (var task in dayTasks)
                     {
-                        if (row >= grid.RowDefinitions.Count) break; // ограничение по строкам
+                        if (row >= grid.RowDefinitions.Count) break; 
 
                         var tb = new TextBlock
                         {
