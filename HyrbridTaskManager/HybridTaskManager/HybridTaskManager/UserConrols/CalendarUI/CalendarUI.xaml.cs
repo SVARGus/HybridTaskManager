@@ -85,6 +85,7 @@ namespace HybridTaskManager.UserConrols.CalendarUI
 
 
 
+
         private void FillTasksGrid(DateTime weekStart)
         {
             var grid = CalendarBorder.Child as Grid;
