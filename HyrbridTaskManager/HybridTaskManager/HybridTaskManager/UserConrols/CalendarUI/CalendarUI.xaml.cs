@@ -83,6 +83,20 @@ namespace HybridTaskManager.UserConrols.CalendarUI
             return (startCol, endCol);
         }
 
+        private void TryDeleteTask(TaskItem task)
+        {
+            var result = MessageBox.Show(
+                $"Вы уверены, что хотите удалить задачу:\n\n«{task.Title}»?",
+                "Подтверждение удаления",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Warning);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                TaskDataBase.TaskBase.Remove(task); 
+                FillTasksGrid(currentWeekStart);    
+            }
+        }
 
 
 
@@ -173,6 +187,12 @@ namespace HybridTaskManager.UserConrols.CalendarUI
                 taskControl.MouseLeftButtonUp += (s, e) =>
                 {
                     ShowTaskEditor(task);
+                    e.Handled = true;
+                };
+
+                taskControl.MouseRightButtonUp += (s, e) =>
+                {
+                    TryDeleteTask(task);
                     e.Handled = true;
                 };
 
