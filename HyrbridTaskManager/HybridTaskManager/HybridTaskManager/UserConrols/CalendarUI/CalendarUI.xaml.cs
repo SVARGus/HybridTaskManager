@@ -94,7 +94,10 @@ namespace HybridTaskManager.UserConrols.CalendarUI
 
                 
                 string hexColor = TaskColorHelper.GetColorByIndex(i);
+
                 var brush = (SolidColorBrush)(new BrushConverter().ConvertFromString(hexColor) ?? Brushes.LightGray);
+
+
 
                 var taskControl = new TaskItemControl
                 {
