@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HybridTaskManager.UserConrols.CalendarUI"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="1500" d:DesignWidth="2300">
 
 
     <UserControl.Resources>
@@ -61,7 +61,7 @@
                         <RowDefinition Height="41*"/>
                         <RowDefinition Height="62*"/>
                         <RowDefinition Height="302*"/>
-                        <RowDefinition Height="41*"/>
+                        <RowDefinition Height="60"/>
                     </Grid.RowDefinitions>
 
                     <Border Grid.Row="0">
@@ -161,28 +161,35 @@
                     </Border>
 
                     <Border x:Name="ButtonBorder"
-                            Grid.Row="3">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-                            <Button Grid.Column="0" Style="{StaticResource RoundButtonStyle}" />
-                            <Button Grid.Column="1" Style="{StaticResource RoundButtonStyle}" />
-                            <Button Grid.Column="2" Style="{StaticResource RoundButtonStyle}" />
-                            <Button Grid.Column="3" Style="{StaticResource RoundButtonStyle}" />
-                            <Button Grid.Column="4" Style="{StaticResource RoundButtonStyle}" />
-                            <Button Grid.Column="5" Style="{StaticResource RoundButtonStyle}" />
-                            <Button Grid.Column="6" Style="{StaticResource RoundButtonStyle}" />
-                        </Grid>
-
+                            Grid.Row="3"
+                            Background="Transparent"
+                            Padding="10"
+                            HorizontalAlignment="Center">
+                        <Button Click="AddTaskButton_Click"
+                                Width="130"
+                                Height="38"
+                                Background="#FF3B82F6"
+                                Foreground="White"
+                                FontSize="14"
+                                FontWeight="SemiBold"
+                                Content="Добавить"
+                                BorderThickness="0"
+                                Cursor="Hand">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}"
+                                            CornerRadius="6"
+                                            Padding="{TemplateBinding Padding}">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                            <Button.Effect>
+                                <DropShadowEffect Color="Black" Opacity="0.2" BlurRadius="5"/>
+                            </Button.Effect>
+                        </Button>
                     </Border>
-                    
+
 
                 </Grid>
 

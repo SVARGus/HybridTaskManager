@@ -281,6 +281,25 @@ namespace HybridTaskManager.UserConrols.CalendarUI
             }
         }
 
+        private void AddTaskButton_Click(object sender, RoutedEventArgs e)
+        {
+            var manageTaskControl = new ManageExistingTaskControl(UserDataBase.Users[0]);
+
+            var window = new Window()
+            {
+                Title = "Новая задача",
+                Content = manageTaskControl,
+                SizeToContent = SizeToContent.WidthAndHeight,
+                Owner = Window.GetWindow(this),
+                WindowStartupLocation = WindowStartupLocation.CenterOwner,
+                ResizeMode = ResizeMode.NoResize
+            };
+
+            window.ShowDialog();
+
+            FillTasksGrid(currentWeekStart);
+        }
+
         private void SetupWeekDays()
         {
             var dayGrid = DayBorder.Child as Grid;
