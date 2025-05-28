@@ -223,25 +223,7 @@ namespace HybridTaskManager.UserConrols.CalendarUI
             FillTasksGrid(currentWeekStart);
         }
 
-        private void Btn_Click(object sender, RoutedEventArgs e)
-        {
-            
-
-            var manageTaskControl = new ManageExistingTaskControl(UserDataBase.Users[0]);
-
-            var window = new Window()
-            {
-                Title = "Редактирование задачи",
-                Content = manageTaskControl,
-                SizeToContent = SizeToContent.WidthAndHeight,
-                Owner = Window.GetWindow(this), 
-                WindowStartupLocation = WindowStartupLocation.CenterOwner,
-                ResizeMode = ResizeMode.NoResize
-            };
-
-            window.ShowDialog();
-
-        }
+        
 
         private static IEnumerable<T> FindVisualChildren<T>(DependencyObject depObj) where T : DependencyObject
         {
@@ -275,10 +257,6 @@ namespace HybridTaskManager.UserConrols.CalendarUI
             FillTasksGrid(currentWeekStart);
             UpdateWeekLabel();
 
-            foreach (var btn in FindVisualChildren<Button>(ButtonBorder))
-            {
-                btn.Click += Btn_Click;
-            }
         }
 
         private void AddTaskButton_Click(object sender, RoutedEventArgs e)
