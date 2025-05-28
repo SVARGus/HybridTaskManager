@@ -26,6 +26,7 @@ namespace HybridTaskManager.UserConrols.CalendarUI
     {
 
         private bool isInitialized = false;
+        private DateTime currentWeekStart;
 
         public CalendarUI()
         {
@@ -158,11 +159,11 @@ namespace HybridTaskManager.UserConrols.CalendarUI
             if (isInitialized) return;
             isInitialized = true;
 
+            currentWeekStart = GetStartOfWeek(DateTime.Today);
+
             SetupWeekDays();
-
-            DateTime weekStart = GetStartOfWeek(DateTime.Today);
-            FillTasksGrid(weekStart);
-
+            FillTasksGrid(currentWeekStart);
+            UpdateWeekLabel();
 
             foreach (var btn in FindVisualChildren<Button>(ButtonBorder))
             {
@@ -172,23 +173,38 @@ namespace HybridTaskManager.UserConrols.CalendarUI
 
         private void SetupWeekDays()
         {
-            DateTime today = DateTime.Today;
-            int currentDayIndex = (int)today.DayOfWeek;
-            currentDayIndex = currentDayIndex == 0 ? 7 : currentDayIndex; 
-
-            
             var dayGrid = DayBorder.Child as Grid;
             if (dayGrid == null) return;
 
             for (int col = 0; col < 7; col++)
             {
-                DateTime dayDate = today.AddDays(col - currentDayIndex + 1);
-
+                DateTime dayDate = currentWeekStart.AddDays(col);
                 if (GetChildByColumn(dayGrid, col) is DaysUI dayUI)
                 {
                     dayUI.SetDateInfo(dayDate);
                 }
             }
+        }
+
+        private void PrevWeek_Click(object sender, RoutedEventArgs e)
+        {
+            currentWeekStart = currentWeekStart.AddDays(-7);
+            SetupWeekDays();
+            FillTasksGrid(currentWeekStart);
+            UpdateWeekLabel();
+        }
+
+        private void NextWeek_Click(object sender, RoutedEventArgs e)
+        {
+            currentWeekStart = currentWeekStart.AddDays(7);
+            SetupWeekDays();
+            FillTasksGrid(currentWeekStart);
+            UpdateWeekLabel();
+        }
+
+        private void UpdateWeekLabel()
+        {
+            WeekLabel.Text = $"{currentWeekStart:dd MMM} - {currentWeekStart.AddDays(6):dd MMM yyyy}";
         }
 
         private UIElement GetChildByColumn(Grid grid, int column)
@@ -202,4 +218,6 @@ namespace HybridTaskManager.UserConrols.CalendarUI
             return null;
         }
     }
+
+
 }

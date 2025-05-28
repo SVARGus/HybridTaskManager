@@ -64,6 +64,14 @@
                         <RowDefinition Height="41*"/>
                     </Grid.RowDefinitions>
 
+                    <Border Grid.Row="0">
+                        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5">
+                            <Button Content="←" Width="30" Click="PrevWeek_Click" Margin="5"/>
+                            <TextBlock x:Name="WeekLabel" FontSize="16" VerticalAlignment="Center" Margin="10,0"/>
+                            <Button Content="→" Width="30" Click="NextWeek_Click" Margin="5"/>
+                        </StackPanel>
+                    </Border>
+
                     <Border Grid.Row="1"
                          Background="#FF696969"
                          BorderThickness="1"
