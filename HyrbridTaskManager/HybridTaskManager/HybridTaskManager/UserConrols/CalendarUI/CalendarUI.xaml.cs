@@ -69,10 +69,11 @@ namespace HybridTaskManager.UserConrols.CalendarUI
         {
             var grid = CalendarBorder.Child as Grid;
             if (grid == null) return;
+
             grid.Children.Clear();
 
             var tasks = GetTasksForWeek(weekStart);
-            var placed = new List<(int startCol, int endCol, int row)>(); 
+            var placed = new List<(int startCol, int endCol, int row)>();
 
             for (int i = 0; i < tasks.Count; i++)
             {
@@ -87,7 +88,12 @@ namespace HybridTaskManager.UserConrols.CalendarUI
 
                 int row = FindAvailableRow(placed, startCol, endCol);
 
+               
                 var brushPriority = (SolidColorBrush)(new BrushConverter().ConvertFromString(task.Priority.HexColorCode) ?? Brushes.Transparent);
+
+                
+                string hexColor = TaskColorHelper.GetColorByIndex(i);
+                var brush = (SolidColorBrush)(new BrushConverter().ConvertFromString(hexColor) ?? Brushes.LightGray);
 
                 var taskControl = new TaskItemControl
                 {
@@ -97,18 +103,12 @@ namespace HybridTaskManager.UserConrols.CalendarUI
                     BackgroundColor = brush
                 };
 
-                
-                string hexColor = TaskColorHelper.GetColorByIndex(i);
-                var brush = (SolidColorBrush)(new BrushConverter().ConvertFromString(hexColor) ?? Brushes.LightGray);
-                taskControl.BackgroundColor = brush;
-
                 Grid.SetRow(taskControl, row);
                 Grid.SetColumn(taskControl, startCol);
                 Grid.SetColumnSpan(taskControl, endCol - startCol + 1);
 
                 grid.Children.Add(taskControl);
                 placed.Add((startCol, endCol, row));
-
             }
         }
 
