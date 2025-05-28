@@ -87,10 +87,14 @@ namespace HybridTaskManager.UserConrols.CalendarUI
 
                 int row = FindAvailableRow(placed, startCol, endCol);
 
+                var brushPriority = (SolidColorBrush)(new BrushConverter().ConvertFromString(task.Priority.HexColorCode) ?? Brushes.Transparent);
+
                 var taskControl = new TaskItemControl
                 {
                     Title = task.Title,
-                    ToolTip = $"{task.Title}\n{task.Description}\n{task.StartAt} - {task.DeadLine}"
+                    ToolTip = $"{task.Title}\n{task.Description}\n{task.StartAt} - {task.DeadLine}",
+                    PriorityColor = brushPriority,
+                    BackgroundColor = brush
                 };
 
                 

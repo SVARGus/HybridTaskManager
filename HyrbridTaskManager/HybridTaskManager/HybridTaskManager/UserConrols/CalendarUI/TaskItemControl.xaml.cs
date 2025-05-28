@@ -35,6 +35,15 @@ namespace HybridTaskManager.UserConrols.CalendarUI
             set => SetValue(BackgroundColorProperty, value);
         }
 
+        public static readonly DependencyProperty PriorityColorProperty =
+         DependencyProperty.Register(nameof(PriorityColor), typeof(Brush), typeof(TaskItemControl), new PropertyMetadata(Brushes.Transparent));
+
+        public Brush PriorityColor
+        {
+            get => (Brush)GetValue(PriorityColorProperty);
+            set => SetValue(PriorityColorProperty, value);
+        }
+
 
         public string Title
         {
