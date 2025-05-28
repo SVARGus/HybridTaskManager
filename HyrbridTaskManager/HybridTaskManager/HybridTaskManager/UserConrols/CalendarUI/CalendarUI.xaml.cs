@@ -181,6 +181,7 @@ namespace HybridTaskManager.UserConrols.CalendarUI
             }
         }
 
+
         private void ShowTaskEditor(TaskItem task)
         {
            
