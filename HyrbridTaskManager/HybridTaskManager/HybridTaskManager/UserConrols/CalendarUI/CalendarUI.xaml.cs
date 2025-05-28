@@ -193,6 +193,7 @@ namespace HybridTaskManager.UserConrols.CalendarUI
 
         private UIElement GetChildByColumn(Grid grid, int column)
         {
+
             foreach (UIElement child in grid.Children)
             {
                 if (Grid.GetColumn(child) == column)
