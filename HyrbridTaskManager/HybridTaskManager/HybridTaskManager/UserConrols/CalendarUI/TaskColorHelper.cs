@@ -9,28 +9,25 @@ namespace HybridTaskManager.UserConrols.CalendarUI
 {
     public static class TaskColorHelper
     {
-        public static readonly Dictionary<string, string> TaskColorMap = new()
+        private static readonly Dictionary<string, string> TaskColorMap = new()
+    {
+        { "Low", "#A8D5BA" },
+        { "Medium", "#FFD580" },
+        { "High", "#FF9999" },
+        { "Critical", "#FF6666" },
+        { "In Progress", "#ADD8E6" },
+        { "Done", "#B0E57C" }
+    };
+
+        public static string GetColorForTask(TaskItem task)
         {
-            { "Low", "#A8D5BA" },         // Зелёный
-            { "Medium", "#FFD580" },      // Жёлтый
-            { "High", "#FF9999" },        // Красный
-            { "Critical", "#FF6666" },    // Тёмно-красный
-            { "In Progress", "#ADD8E6" }, // Голубой
-            { "Done", "#B0E57C" },        // Светло-зелёный
-        };
+            if (task.Priority?.Name != null && TaskColorMap.TryGetValue(task.Priority.Name, out var color))
+                return color;
 
-        public static string GetColorFor(TaskItem task)
-        {
-            if (task == null)
-                return "#CCCCCC"; // Цвет по умолчанию
+            if (task.Status?.Name != null && TaskColorMap.TryGetValue(task.Status.Name, out color))
+                return color;
 
-            if (task.Priority != null && TaskColorMap.TryGetValue(task.Priority.Name, out var priorityColor))
-                return priorityColor;
-
-            if (task.Status != null && TaskColorMap.TryGetValue(task.Status.Name, out var statusColor))
-                return statusColor;
-
-            return "#CCCCCC"; // Цвет по умолчанию
+            return "#D3D3D3"; // Default — серый
         }
     }
 }
