@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HybridTaskManager"
         xmlns:controls="clr-namespace:HybridTaskManager.UserConrols"
+        xmlns:controlCalendar="clr-namespace:HybridTaskManager.UserConrols.CalendarUI"
         mc:Ignorable="d"
         Title="Hybrid Task Manager" MinHeight="600" MinWidth="1000"
         WindowStartupLocation="CenterScreen"
@@ -94,7 +95,7 @@
                             <MenuItem Header="Закрыть вкладку"/>
                         </ContextMenu>
                     </TabItem.ContextMenu>
-                    <controls:CalendarUI x:Name="CalendarControl"/>
+                    <controlCalendar:CalendarUI x:Name="CalendarControl"/>
                 </TabItem>
 
                 <TabItem Header="Список задач">
