@@ -102,7 +102,8 @@ namespace HybridTaskManager.UserConrols.CalendarUI
 
         private void FillTasksGrid(DateTime weekStart)
         {
-            var grid = CalendarBorder.Child as Grid;
+            var scrollViewer = CalendarBorder.Child as ScrollViewer;
+            var grid = TaskGrid;
             if (grid == null) return;
 
             grid.Children.Clear();
