@@ -72,7 +72,7 @@ namespace HybridTaskManager.UserConrols.CalendarUI
             grid.Children.Clear();
 
             var tasks = GetTasksForWeek(weekStart);
-            var placed = new List<(int startCol, int endCol, int row)>(); // занятые области
+            var placed = new List<(int startCol, int endCol, int row)>(); 
 
             foreach (var task in tasks)
             {
@@ -90,6 +90,10 @@ namespace HybridTaskManager.UserConrols.CalendarUI
                     Title = task.Title,
                     ToolTip = $"{task.Title}\n{task.Description}\n{task.StartAt} - {task.DeadLine}"
                 };
+
+                string hexColor = TaskColorHelper.GetColorByIndex(i);
+                var brush = (SolidColorBrush)(new BrushConverter().ConvertFromString(hexColor) ?? Brushes.LightGray);
+                taskControl.BackgroundColor = brush;
 
                 Grid.SetRow(taskControl, row);
                 Grid.SetColumn(taskControl, startCol);

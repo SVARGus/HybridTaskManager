@@ -6,10 +6,11 @@
              xmlns:local="clr-namespace:HybridTaskManager.UserConrols.CalendarUI"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    
-    <Border Background="LightBlue" Padding="4" Margin="2" CornerRadius="4" 
-            BorderBrush="DarkBlue" BorderThickness="1">
-        <TextBlock Text="{Binding Title}" TextWrapping="Wrap" />
+
+    <Border Background="{Binding BackgroundColor, RelativeSource={RelativeSource AncestorType=UserControl}}"
+        Padding="4" Margin="2" CornerRadius="4" 
+        BorderBrush="DarkBlue" BorderThickness="1">
+        <TextBlock Text="{Binding Title, RelativeSource={RelativeSource AncestorType=UserControl}}" TextWrapping="Wrap" />
     </Border>
-    
+
 </UserControl>

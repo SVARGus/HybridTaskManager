@@ -23,7 +23,18 @@ namespace HybridTaskManager.UserConrols.CalendarUI
         public static readonly DependencyProperty TitleProperty =
             DependencyProperty.Register(nameof(Title), typeof(string), typeof(TaskItemControl));
 
-        // Можно добавить и другие свойства: Description, StartAt, DeadLine и т.д.
+        
+
+
+        public static readonly DependencyProperty BackgroundColorProperty =
+        DependencyProperty.Register(nameof(BackgroundColor), typeof(Brush), typeof(TaskItemControl));
+
+        public Brush BackgroundColor
+        {
+            get => (Brush)GetValue(BackgroundColorProperty);
+            set => SetValue(BackgroundColorProperty, value);
+        }
+
 
         public string Title
         {

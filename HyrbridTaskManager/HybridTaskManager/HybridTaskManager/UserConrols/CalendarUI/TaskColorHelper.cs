@@ -9,25 +9,15 @@ namespace HybridTaskManager.UserConrols.CalendarUI
 {
     public static class TaskColorHelper
     {
-        private static readonly Dictionary<string, string> TaskColorMap = new()
+        private static readonly List<string> Colors = new()
     {
-        { "Low", "#A8D5BA" },
-        { "Medium", "#FFD580" },
-        { "High", "#FF9999" },
-        { "Critical", "#FF6666" },
-        { "In Progress", "#ADD8E6" },
-        { "Done", "#B0E57C" }
+        "#A8D5BA", "#FFD580", "#FF9999", "#ADD8E6",
+        "#B0E57C", "#FFB6C1", "#DDA0DD", "#87CEFA"
     };
 
-        public static string GetColorForTask(TaskItem task)
+        public static string GetColorByIndex(int index)
         {
-            if (task.Priority?.Name != null && TaskColorMap.TryGetValue(task.Priority.Name, out var color))
-                return color;
-
-            if (task.Status?.Name != null && TaskColorMap.TryGetValue(task.Status.Name, out color))
-                return color;
-
-            return "#D3D3D3"; // Default — серый
+            return Colors[index % Colors.Count];
         }
     }
 }
