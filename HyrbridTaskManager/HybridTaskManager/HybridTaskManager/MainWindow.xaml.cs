@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Collections.ObjectModel;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -9,13 +10,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using HybridTaskManager.DataBaseSimulation;
+using HybridTaskManager.DTO.DictionaryEntity;
+using HybridTaskManager.DTO.ProjectsAndProjectRoles.UserEntity;
+using HybridTaskManager.DTO.ProjectsAndProjectRoles;
 using HybridTaskManager.UserConrols.TaskManageControls;
+using TaskStatus = HybridTaskManager.DTO.DictionaryEntity.TaskStatus;
 
 namespace HybridTaskManager
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
@@ -24,5 +26,4 @@ namespace HybridTaskManager
             
         }
     }
-
 }

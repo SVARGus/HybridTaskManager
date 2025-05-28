@@ -8,6 +8,14 @@
              Background="White">
     <ScrollViewer HorizontalScrollBarVisibility="Auto">
         <StackPanel Orientation="Horizontal" Margin="10">
+            <StackPanel.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Добавить колонку" Click="AddColumn_Click"/>
+                    <MenuItem Header="Обновить" Click="RefreshBoard_Click"/>
+                    <MenuItem Header="Настройки" Click="Settings_Click"/>
+                </ContextMenu>
+            </StackPanel.ContextMenu>
+
             <ItemsControl ItemsSource="{Binding StatusColumns}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>

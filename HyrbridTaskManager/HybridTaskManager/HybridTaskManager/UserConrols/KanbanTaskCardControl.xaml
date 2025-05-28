@@ -7,6 +7,14 @@
              xmlns:models="clr-namespace:HybridTaskManager.DTO.DictionaryEntity"
              Height="Auto" MinHeight="60">
     <Border Background="White" BorderBrush="#AAA" BorderThickness="1" CornerRadius="4" Padding="8">
+        <Border.ContextMenu>
+            <ContextMenu>
+                <MenuItem Header="Открыть" Click="OpenTask_Click"/>
+                <MenuItem Header="Удалить" Click="DeleteTask_Click"/>
+                <MenuItem Header="Копировать" Click="CopyTask_Click"/>
+                <MenuItem Header="Переместить" Click="MoveTask_Click"/>
+            </ContextMenu>
+        </Border.ContextMenu>
         <StackPanel>
             <TextBlock Text="{Binding Title}" FontWeight="Bold" FontSize="13" TextWrapping="Wrap"/>
             <TextBlock Text="{Binding Description}" FontSize="11" TextWrapping="Wrap" Foreground="Gray" Margin="0,4,0,0"/>

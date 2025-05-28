@@ -24,5 +24,30 @@ namespace HybridTaskManager.UserConrols
         {
             InitializeComponent();
         }
+
+        private void AddTask_Click(object sender, RoutedEventArgs e)
+        {
+            // TODO: Добавить новую задачу в эту колонку
+        }
+
+        private void RenameColumn_Click(object sender, RoutedEventArgs e)
+        {
+            // TODO: Переименовать колонку
+        }
+
+        private void DeleteColumn_Click(object sender, RoutedEventArgs e)
+        {
+            // TODO: Удалить текущую колонку
+        }
+
+        private void RefreshColumn_Click(object sender, RoutedEventArgs e)
+        {
+            // TODO: Обновить содержимое колонки
+        }
+
+        private void CopyColumn_Click(object sender, RoutedEventArgs e)
+        {
+            // TODO: Копировать колонку и её задачи
+        }
     }
 }
