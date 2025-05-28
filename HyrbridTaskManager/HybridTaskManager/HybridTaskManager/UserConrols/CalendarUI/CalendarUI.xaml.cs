@@ -68,6 +68,22 @@ namespace HybridTaskManager.UserConrols.CalendarUI
             return 7; 
         }
 
+        private (int? startCol, int? endCol) ClampToVisibleWeek(DateTime weekStart, DateTime taskStart, DateTime taskEnd)
+        {
+            DateTime weekEnd = weekStart.AddDays(6);
+
+            
+            if (taskEnd < weekStart || taskStart > weekEnd)
+                return (null, null);
+
+            
+            int startCol = Math.Max(0, (taskStart.Date - weekStart).Days);
+            int endCol = Math.Min(6, (taskEnd.Date - weekStart).Days);
+
+            return (startCol, endCol);
+        }
+
+
 
         private void FillTasksGrid(DateTime weekStart)
         {
@@ -83,21 +99,17 @@ namespace HybridTaskManager.UserConrols.CalendarUI
             {
                 var task = tasks[i];
 
-                int startCol = (task.StartAt.Date - weekStart.Date).Days;
-                int endCol = (task.DeadLine.Date - weekStart.Date).Days;
+                var (startCol, endCol) = ClampToVisibleWeek(weekStart, task.StartAt.Date, task.DeadLine.Date);
+                if (startCol == null || endCol == null)
+                    continue;
 
-                if (startCol < 0 || startCol > 6) continue;
-                if (endCol < startCol) endCol = startCol;
-                if (endCol > 6) endCol = 6;
-
-                int row = FindAvailableRow(placed, startCol, endCol);
+                int row = FindAvailableRow(placed, startCol.Value, endCol.Value);
 
                 var brushPriority = (SolidColorBrush)(new BrushConverter().ConvertFromString(task.Priority.HexColorCode) ?? Brushes.Transparent);
 
                 string hexColor = TaskColorHelper.GetColorByIndex(i);
                 var brush = (SolidColorBrush)(new BrushConverter().ConvertFromString(hexColor) ?? Brushes.LightGray);
 
-                
                 var tooltip = new ToolTip
                 {
                     Background = Brushes.White,
@@ -154,13 +166,11 @@ namespace HybridTaskManager.UserConrols.CalendarUI
                 };
 
                 Grid.SetRow(taskControl, row);
-                Grid.SetColumn(taskControl, startCol);
-                Grid.SetColumnSpan(taskControl, endCol - startCol + 1);
+                Grid.SetColumn(taskControl, startCol.Value);
+                Grid.SetColumnSpan(taskControl, endCol.Value - startCol.Value + 1);
 
                 grid.Children.Add(taskControl);
-                placed.Add((startCol, endCol, row));
-
-                
+                placed.Add((startCol.Value, endCol.Value, row));
             }
         }
 
