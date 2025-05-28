@@ -41,7 +41,10 @@ namespace HybridTaskManager.UserConrols.CalendarUI
             try
             {
                 return TaskDataBase.TaskBase
-                    .Where(task => task.StartAt.Date >= weekStart.Date && task.StartAt.Date <= weekEnd.Date)
+                    .Where(task =>
+                        task.StartAt.Date <= weekEnd.Date &&  // началась до конца недели
+                        task.DeadLine.Date >= weekStart.Date  // закончится после начала недели
+                    )
                     .ToList();
             }
             catch (Exception ex)
@@ -94,7 +97,7 @@ namespace HybridTaskManager.UserConrols.CalendarUI
                 string hexColor = TaskColorHelper.GetColorByIndex(i);
                 var brush = (SolidColorBrush)(new BrushConverter().ConvertFromString(hexColor) ?? Brushes.LightGray);
 
-                // Красиво оформленный ToolTip
+                
                 var tooltip = new ToolTip
                 {
                     Background = Brushes.White,
@@ -156,6 +159,8 @@ namespace HybridTaskManager.UserConrols.CalendarUI
 
                 grid.Children.Add(taskControl);
                 placed.Add((startCol, endCol, row));
+
+                
             }
         }
 
