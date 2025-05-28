@@ -89,20 +89,63 @@ namespace HybridTaskManager.UserConrols.CalendarUI
 
                 int row = FindAvailableRow(placed, startCol, endCol);
 
-               
                 var brushPriority = (SolidColorBrush)(new BrushConverter().ConvertFromString(task.Priority.HexColorCode) ?? Brushes.Transparent);
 
-                
                 string hexColor = TaskColorHelper.GetColorByIndex(i);
-
                 var brush = (SolidColorBrush)(new BrushConverter().ConvertFromString(hexColor) ?? Brushes.LightGray);
 
-
+                // Красиво оформленный ToolTip
+                var tooltip = new ToolTip
+                {
+                    Background = Brushes.White,
+                    BorderBrush = Brushes.Gray,
+                    BorderThickness = new Thickness(1),
+                    Padding = new Thickness(10),
+                    Content = new StackPanel
+                    {
+                        Children =
+                {
+                    new TextBlock
+                    {
+                        Text = task.Title,
+                        FontWeight = FontWeights.Bold,
+                        FontSize = 14,
+                        Margin = new Thickness(0, 0, 0, 5)
+                    },
+                    new TextBlock
+                    {
+                        Text = task.Description,
+                        TextWrapping = TextWrapping.Wrap,
+                        Margin = new Thickness(0, 0, 0, 5)
+                    },
+                    new TextBlock
+                    {
+                        Text = $"Сроки: {task.StartAt:dd.MM.yyyy} — {task.DeadLine:dd.MM.yyyy}",
+                        Foreground = Brushes.DimGray
+                    },
+                    new TextBlock
+                    {
+                        Text = $"Приоритет: {task.Priority?.Name ?? "—"}",
+                        Foreground = Brushes.DimGray
+                    },
+                    new TextBlock
+                    {
+                        Text = $"Статус: {task.Status?.Name ?? "—"}",
+                        Foreground = Brushes.DimGray
+                    },
+                    new TextBlock
+                    {
+                        Text = $"Ответственный: {task.AssignedTo?.UserName ?? "—"}",
+                        Foreground = Brushes.DimGray
+                    }
+                }
+                    }
+                };
 
                 var taskControl = new TaskItemControl
                 {
                     Title = task.Title,
-                    ToolTip = $"{task.Title}\n{task.Description}\n{task.StartAt} - {task.DeadLine}",
+                    ToolTip = tooltip,
                     PriorityColor = brushPriority,
                     BackgroundColor = brush
                 };
