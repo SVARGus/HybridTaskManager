@@ -102,7 +102,7 @@ namespace HybridTaskManager.DataBaseSimulation
         StatusTypeDataBase.TaskStatuses[1], TaskTypesDataBase.TaskTypes[1],
         TaskPriorityDataBase.TaskPriorities[1], UserDataBase.Users[1], UserDataBase.Users[2],
         DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + 7).AddHours(4),
-        DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + 7).AddHours(6)),
+        DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + 9).AddHours(6)),
 };
     }
 }
