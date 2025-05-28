@@ -170,9 +170,36 @@ namespace HybridTaskManager.UserConrols.CalendarUI
                 Grid.SetColumn(taskControl, startCol.Value);
                 Grid.SetColumnSpan(taskControl, endCol.Value - startCol.Value + 1);
 
+                taskControl.MouseLeftButtonUp += (s, e) =>
+                {
+                    ShowTaskEditor(task);
+                    e.Handled = true;
+                };
+
                 grid.Children.Add(taskControl);
                 placed.Add((startCol.Value, endCol.Value, row));
             }
+        }
+
+        private void ShowTaskEditor(TaskItem task)
+        {
+           
+            var manageTaskControl = new ManageExistingTaskControl(task, null);
+
+            var window = new Window()
+            {
+                Title = "Редактирование задачи",
+                Content = manageTaskControl,
+                SizeToContent = SizeToContent.WidthAndHeight,
+                Owner = Window.GetWindow(this),
+                WindowStartupLocation = WindowStartupLocation.CenterOwner,
+                ResizeMode = ResizeMode.NoResize
+            };
+
+            
+            window.ShowDialog();
+
+            FillTasksGrid(currentWeekStart);
         }
 
         private void Btn_Click(object sender, RoutedEventArgs e)
