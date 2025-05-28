@@ -104,6 +104,7 @@ namespace HybridTaskManager.UserConrols.CalendarUI
 
                 grid.Children.Add(taskControl);
                 placed.Add((startCol, endCol, row));
+
             }
         }
 
