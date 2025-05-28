@@ -74,8 +74,10 @@ namespace HybridTaskManager.UserConrols.CalendarUI
             var tasks = GetTasksForWeek(weekStart);
             var placed = new List<(int startCol, int endCol, int row)>(); 
 
-            foreach (var task in tasks)
+            for (int i = 0; i < tasks.Count; i++)
             {
+                var task = tasks[i];
+
                 int startCol = (task.StartAt.Date - weekStart.Date).Days;
                 int endCol = (task.DeadLine.Date - weekStart.Date).Days;
 
@@ -91,6 +93,7 @@ namespace HybridTaskManager.UserConrols.CalendarUI
                     ToolTip = $"{task.Title}\n{task.Description}\n{task.StartAt} - {task.DeadLine}"
                 };
 
+                
                 string hexColor = TaskColorHelper.GetColorByIndex(i);
                 var brush = (SolidColorBrush)(new BrushConverter().ConvertFromString(hexColor) ?? Brushes.LightGray);
                 taskControl.BackgroundColor = brush;
@@ -100,7 +103,6 @@ namespace HybridTaskManager.UserConrols.CalendarUI
                 Grid.SetColumnSpan(taskControl, endCol - startCol + 1);
 
                 grid.Children.Add(taskControl);
-
                 placed.Add((startCol, endCol, row));
             }
         }
