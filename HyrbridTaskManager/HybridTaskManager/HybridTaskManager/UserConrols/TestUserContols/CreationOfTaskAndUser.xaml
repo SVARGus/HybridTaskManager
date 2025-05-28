@@ -24,7 +24,7 @@
             </Grid.RowDefinitions>
             <Grid Grid.Row="0" Grid.Column="0" Margin="5">
                 <Button x:Name="AddTaskButton"
-                        Content="AddTask" Click="AddTaskButton_Click">
+                        Content="AddTask" >
                     
                 </Button>
             </Grid>
