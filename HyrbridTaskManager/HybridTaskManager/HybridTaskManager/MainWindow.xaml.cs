@@ -15,6 +15,8 @@ using HybridTaskManager.DTO.ProjectsAndProjectRoles.UserEntity;
 using HybridTaskManager.DTO.ProjectsAndProjectRoles;
 using HybridTaskManager.UserConrols.TaskManageControls;
 using TaskStatus = HybridTaskManager.DTO.DictionaryEntity.TaskStatus;
+using HybridTaskManager.LocalSaveDataManage;
+using Ookii.Dialogs.Wpf;
 
 namespace HybridTaskManager
 {
@@ -24,6 +26,7 @@ namespace HybridTaskManager
         {
             InitializeComponent();
             LoadKanbanTestData();
+            CurrentLocalSaveDir.DataContext = LocalDataSaveManager.CurrentLocalSaveDirecoty;
         }
 
         private void LoadKanbanTestData()
@@ -62,6 +65,24 @@ namespace HybridTaskManager
         {
             public TaskStatus Status { get; set; }
             public ObservableCollection<TaskItem> Tasks { get; set; }
+        }
+
+        private void LocalSaveDirButton_Click(object sender, RoutedEventArgs e)
+        {
+            var dialog = new VistaFolderBrowserDialog
+            {
+                Description = "Выберите папку",
+                UseDescriptionForTitle = true, // Использовать Description как заголовок окна
+                ShowNewFolderButton = true // Показывать кнопку "Создать папку"
+            };
+
+            bool? result = dialog.ShowDialog();
+
+            if (result == true)
+            {
+                string selectedPath = dialog.SelectedPath;
+                LocalDataSaveManager.CurrentLocalSaveDirecoty = selectedPath;
+            }
         }
     }
 }

@@ -68,6 +68,25 @@
                         <ListBoxItem Content="Trello"/>
                         <ListBoxItem Content="Asana"/>
                     </ListBox>
+                    <Separator/>
+                        <Border Margin="8">
+                            <Button x:Name="LocalSaveDirButton" 
+                                        Height="30" Click="LocalSaveDirButton_Click">
+                                <Button.Content>
+                                    <TextBlock Text="Выбрать локальную дирректорию"/>
+                                </Button.Content>
+                                <Button.ToolTip>
+                                    <TextBlock Text="Выберете директорию для локального хранения данных приложения"/>
+                                </Button.ToolTip>
+                            </Button>
+                        </Border>
+                    <Separator/>
+                        <Border Margin="8">
+                        <StackPanel>
+                            <TextBlock Text="Текущая локальная директория данных приложения:" TextWrapping="Wrap" />
+                            <TextBlock x:Name="CurrentLocalSaveDir" Text="{Binding CurrentLocalSaveDirecoty}"/>
+                        </StackPanel>
+                    </Border>
                 </StackPanel>
             </DockPanel>
 

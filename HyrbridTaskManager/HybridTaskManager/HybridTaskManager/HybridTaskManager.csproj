@@ -11,6 +11,8 @@
   <ItemGroup>
     <Folder Include="Art\Styles\" />
     <Folder Include="Handlers\" />
+    <Folder Include="UploadData\" />
+    <Folder Include="DownloadDataStorage\" />
   </ItemGroup>
 
   <ItemGroup>
