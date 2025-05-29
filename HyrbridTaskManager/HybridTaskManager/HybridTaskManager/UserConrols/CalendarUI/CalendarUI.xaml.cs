@@ -19,9 +19,7 @@ using System.Windows.Shapes;
 
 namespace HybridTaskManager.UserConrols.CalendarUI
 {
-    /// <summary>
-    /// Логика взаимодействия для CalendarUI.xaml
-    /// </summary>
+   
     public partial class CalendarUI : UserControl
     {
 
@@ -35,6 +33,11 @@ namespace HybridTaskManager.UserConrols.CalendarUI
 
         }
 
+
+        /// <summary>
+        /// Возвращает список задач, пересекающих интервал текущей недели.
+        /// Учитываются те задачи, у которых StartAt ≤ конец недели и DeadLine ≥ начало недели.
+        /// </summary>
         private List<TaskItem> GetTasksForWeek(DateTime weekStart)
         {
             DateTime weekEnd = weekStart.AddDays(6);
@@ -42,8 +45,8 @@ namespace HybridTaskManager.UserConrols.CalendarUI
             {
                 return TaskDataBase.TaskBase
                     .Where(task =>
-                        task.StartAt.Date <= weekEnd.Date &&  // началась до конца недели
-                        task.DeadLine.Date >= weekStart.Date  // закончится после начала недели
+                        task.StartAt.Date <= weekEnd.Date &&  
+                        task.DeadLine.Date >= weekStart.Date  
                     )
                     .ToList();
             }
@@ -53,6 +56,10 @@ namespace HybridTaskManager.UserConrols.CalendarUI
                 return new List<TaskItem>();
             }
         }
+
+        /// <summary>
+        /// Ищет первый свободный ряд, где новый прямоугольник (задача) не пересечётся с уже размещёнными.
+        /// </summary>
 
         private int FindAvailableRow(List<(int startCol, int endCol, int row)> placed, int start, int end)
         {
@@ -64,9 +71,14 @@ namespace HybridTaskManager.UserConrols.CalendarUI
                 if (!intersects)
                     return row;
             }
-
+            // Если все занято, возвращаем последний ряд
             return 7; 
         }
+
+        /// <summary>
+        /// Обрезает диапазон колонки (startCol..endCol) по границам видимой недели [0..6].
+        /// Если задача полностью вне недели, возвращает (null, null).
+        /// </summary>
 
         private (int? startCol, int? endCol) ClampToVisibleWeek(DateTime weekStart, DateTime taskStart, DateTime taskEnd)
         {
@@ -83,6 +95,9 @@ namespace HybridTaskManager.UserConrols.CalendarUI
             return (startCol, endCol);
         }
 
+        /// <summary>
+        /// Запрашивает подтверждение удаления и при согласии удаляет задачу из базы и перерисовывает календарь.
+        /// </summary>
         private void TryDeleteTask(TaskItem task)
         {
             var result = MessageBox.Show(
@@ -99,7 +114,10 @@ namespace HybridTaskManager.UserConrols.CalendarUI
         }
 
 
-
+        /// <summary>
+        /// Создает для каждой задачи свой TaskItemControl, расставляет их в гриде в нужных строках и колонках,
+        /// а также навешивает события клика и правого клика.
+        /// </summary>
         private void FillTasksGrid(DateTime weekStart)
         {
             var scrollViewer = CalendarBorder.Child as ScrollViewer;
@@ -202,7 +220,9 @@ namespace HybridTaskManager.UserConrols.CalendarUI
             }
         }
 
-
+        // <summary>
+        /// Открывает окно редактирования/создания задачи и после закрытия обновляет календарь.
+        /// </summary>
         private void ShowTaskEditor(TaskItem task)
         {
            
@@ -224,15 +244,22 @@ namespace HybridTaskManager.UserConrols.CalendarUI
             FillTasksGrid(currentWeekStart);
         }
 
-        
 
-        
+
+        /// <summary>
+        /// Возвращает дату начала недели (понедельник) для переданной даты.
+        /// </summary>
 
         private DateTime GetStartOfWeek(DateTime date)
         {
             int diff = (7 + (date.DayOfWeek - DayOfWeek.Monday)) % 7;
             return date.AddDays(-diff).Date;
         }
+
+
+        /// <summary>
+        /// При загрузке контрола — инициализируем отображение и заполняем задачи.
+        /// </summary>
 
         private void CalendarUI_Loaded(object sender, RoutedEventArgs e)
         {
@@ -246,6 +273,10 @@ namespace HybridTaskManager.UserConrols.CalendarUI
             UpdateWeekLabel();
 
         }
+
+        /// <summary>
+        /// Обработчик нажатия кнопки создания новой задачи.
+        /// </summary>
 
         private void AddTaskButton_Click(object sender, RoutedEventArgs e)
         {
@@ -266,6 +297,10 @@ namespace HybridTaskManager.UserConrols.CalendarUI
             FillTasksGrid(currentWeekStart);
         }
 
+        /// <summary>
+        /// Устанавливает подписи (день недели и дату) во всех семи днях.
+        /// </summary>
+
         private void SetupWeekDays()
         {
             var dayGrid = DayBorder.Child as Grid;
@@ -281,6 +316,10 @@ namespace HybridTaskManager.UserConrols.CalendarUI
             }
         }
 
+        /// <summary>
+        /// Переходит на предыдущую неделю.
+        /// </summary>
+
         private void PrevWeek_Click(object sender, RoutedEventArgs e)
         {
             currentWeekStart = currentWeekStart.AddDays(-7);
@@ -289,6 +328,9 @@ namespace HybridTaskManager.UserConrols.CalendarUI
             UpdateWeekLabel();
         }
 
+        /// <summary>
+        /// Переходит на следующую неделю.
+        /// </summary>
         private void NextWeek_Click(object sender, RoutedEventArgs e)
         {
             currentWeekStart = currentWeekStart.AddDays(7);
@@ -297,11 +339,18 @@ namespace HybridTaskManager.UserConrols.CalendarUI
             UpdateWeekLabel();
         }
 
+        /// <summary>
+        /// Обновляет заголовок текущей недели (диапазон дат).
+        /// </summary>
+
         private void UpdateWeekLabel()
         {
             WeekLabel.Text = $"{currentWeekStart:dd MMM} - {currentWeekStart.AddDays(6):dd MMM yyyy}";
         }
 
+        /// <summary>
+        /// Вспомогательный: находит элемент в гриде по колонке (для SetupWeekDays).
+        /// </summary>
         private UIElement GetChildByColumn(Grid grid, int column)
         {
 
