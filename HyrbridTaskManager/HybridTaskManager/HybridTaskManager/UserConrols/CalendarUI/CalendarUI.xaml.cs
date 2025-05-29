@@ -1,5 +1,6 @@
 ﻿using HybridTaskManager.DataBaseSimulation;
 using HybridTaskManager.DTO.DictionaryEntity;
+using HybridTaskManager.DTO.ProjectsAndProjectRoles.UserEntity;
 using HybridTaskManager.UserConrols.TaskManageControls;
 using System;
 using System.Collections.Generic;
@@ -27,10 +28,12 @@ namespace HybridTaskManager.UserConrols.CalendarUI
 
         private bool isInitialized = false;
         private DateTime currentWeekStart;
+        private User CurrentUser;
 
-        public CalendarUI()
+        public CalendarUI(User curUser)
         {
             InitializeComponent();
+            CurrentUser = curUser;
             Loaded += CalendarUI_Loaded;
 
         }
@@ -40,7 +43,7 @@ namespace HybridTaskManager.UserConrols.CalendarUI
             DateTime weekEnd = weekStart.AddDays(6);
             try
             {
-                return TaskDataBase.TaskBase
+                return TaskData.TaskBase
                     .Where(task =>
                         task.StartAt.Date <= weekEnd.Date &&  // началась до конца недели
                         task.DeadLine.Date >= weekStart.Date  // закончится после начала недели
@@ -93,7 +96,7 @@ namespace HybridTaskManager.UserConrols.CalendarUI
 
             if (result == MessageBoxResult.Yes)
             {
-                TaskDataBase.TaskBase.Remove(task); 
+                TaskData.TaskBase.Remove(task); 
                 FillTasksGrid(currentWeekStart);    
             }
         }
@@ -248,7 +251,7 @@ namespace HybridTaskManager.UserConrols.CalendarUI
 
         private void AddTaskButton_Click(object sender, RoutedEventArgs e)
         {
-            var manageTaskControl = new ManageExistingTaskControl(UserDataBase.Users[0]);
+            var manageTaskControl = new ManageExistingTaskControl(CurrentUser);
 
             var window = new Window()
             {

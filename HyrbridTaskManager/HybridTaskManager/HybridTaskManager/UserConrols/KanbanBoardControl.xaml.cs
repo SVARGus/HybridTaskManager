@@ -32,11 +32,11 @@ namespace HybridTaskManager.UserConrols
 
         private void LoadTestData()
         {
-            var groupedTasks = TaskDataBase.TaskBase
+            var groupedTasks = TaskData.TaskBase
                 .GroupBy(t => t.Status.Id)
                 .ToDictionary(g => g.Key, g => g.ToList());
 
-            foreach (var status in StatusTypeDataBase.TaskStatuses)
+            foreach (var status in StatusTypeData.TaskStatuses)
             {
                 if (groupedTasks.TryGetValue(status.Id, out var tasks))
                 {

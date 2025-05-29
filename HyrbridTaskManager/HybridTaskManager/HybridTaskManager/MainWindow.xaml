@@ -104,7 +104,7 @@
                     <controls:KanbanBoardControl x:Name="KanbanBoard"/>
                 </TabItem>
 
-                <TabItem Header="Календарь">
+                <TabItem Header="Календарь" x:Name="CalendarTab">
                     <TabItem.ContextMenu>
                         <ContextMenu>
                             <MenuItem Header="Открыть в отдельном окне"/>
@@ -114,7 +114,6 @@
                             <MenuItem Header="Закрыть вкладку"/>
                         </ContextMenu>
                     </TabItem.ContextMenu>
-                    <controlCalendar:CalendarUI x:Name="CalendarControl"/>
                 </TabItem>
 
                 <TabItem Header="Список задач">

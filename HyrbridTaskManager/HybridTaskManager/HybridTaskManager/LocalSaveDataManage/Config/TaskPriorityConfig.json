@@ -1,0 +1,22 @@
+[
+    {
+        "Name": "Низкий",
+        "Order": 0,
+        "ColorHex": "#50ca3a"
+    },
+    {
+        "Name": "Средний",
+        "Order": 1,
+        "ColorHex": "#b9ca3a"
+    },
+    {
+        "Name": "Высокий",
+        "Order": 2,
+        "ColorHex": "#ca893a"
+    },
+    {
+        "Name": "Срочный",
+        "Order": 3,
+        "ColorHex": "#ca3a3a"
+    }
+]

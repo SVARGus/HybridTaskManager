@@ -1,0 +1,26 @@
+[
+    {
+        "Name": "Вася Пупкин",
+        "Role": {
+            "Name": "Разработчик",
+            "IsAdmin": false,
+            "CanEdit": true
+        }
+    },
+    {
+        "Name": "Серёжа Валенков",
+        "Role": {
+            "Name": "Разработчик",
+            "IsAdmin": false,
+            "CanEdit": true
+        }
+    },
+    {
+        "Name": "Гриша Ламер",
+        "Role": {
+            "Name": "Разработчик",
+            "IsAdmin": false,
+            "CanEdit": true
+        }
+    }
+]

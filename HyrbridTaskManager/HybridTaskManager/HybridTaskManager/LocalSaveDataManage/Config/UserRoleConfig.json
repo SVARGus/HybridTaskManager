@@ -1,0 +1,12 @@
+[
+    {
+        "Name": "Разработчик",
+        "IsAdmin": false,
+        "CanEdit": true
+    },
+    {
+        "Name": "Дизайнер",
+        "IsAdmin": false,
+        "CanEdit": true
+    }
+]

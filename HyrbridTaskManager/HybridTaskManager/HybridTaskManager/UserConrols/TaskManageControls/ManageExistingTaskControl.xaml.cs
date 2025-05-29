@@ -10,11 +10,11 @@ namespace HybridTaskManager.UserConrols.TaskManageControls
 {
     public partial class ManageExistingTaskControl : System.Windows.Controls.UserControl
     {
-        public ObservableCollection<Project> Projects { get; set; } = new(ProjectDataBase.Projects);
-        public ObservableCollection<HybridTaskManager.DTO.DictionaryEntity.TaskStatus> Statuses { get; set; } = new(StatusTypeDataBase.TaskStatuses);
-        public ObservableCollection<TaskPriority> Priorities { get; set; } = new(TaskPriorityDataBase.TaskPriorities);
-        public ObservableCollection<TaskType> Types { get; set; } = new(TaskTypesDataBase.TaskTypes);
-        public ObservableCollection<User> Users { get; set; } = new(UserDataBase.Users);
+        public ObservableCollection<Project> Projects { get; set; } = new(ProjectData.Projects);
+        public ObservableCollection<HybridTaskManager.DTO.DictionaryEntity.TaskStatus> Statuses { get; set; } = new(StatusTypeData.TaskStatuses);
+        public ObservableCollection<TaskPriority> Priorities { get; set; } = new(TaskPriorityData.TaskPriorities);
+        public ObservableCollection<TaskType> Types { get; set; } = new(TaskTypesData.TaskTypes);
+        public ObservableCollection<User> Users { get; set; } = new(UserData.Users);
 
         public bool IsCreate = false;
         public bool IsEdit = false;
@@ -43,7 +43,7 @@ namespace HybridTaskManager.UserConrols.TaskManageControls
             {
                 if (DataContext is TaskItem editedTask)
                 {
-                    var existingTask = TaskDataBase.TaskBase.FirstOrDefault(t => t.Id == editedTask.Id); 
+                    var existingTask = TaskData.TaskBase.FirstOrDefault(t => t.Id == editedTask.Id); 
                     if (existingTask == null)
                         {
                             System.Windows.MessageBox.Show("Задача не найдена в базе");
@@ -80,7 +80,7 @@ namespace HybridTaskManager.UserConrols.TaskManageControls
                         BeginDate.SelectedDate.Value,
                         DeadLine.SelectedDate.Value
                     );
-                TaskDataBase.TaskBase.Add( newTask );
+                TaskData.TaskBase.Add( newTask );
                 CloseWindow(true);
             }
         }

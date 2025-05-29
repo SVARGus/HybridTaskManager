@@ -9,5 +9,6 @@ namespace HybridTaskManager.LocalSaveDataManage
     public static class LocalDataSaveManager
     {
         public static string CurrentLocalSaveDirecoty {get; set;}
+
     }
 }
