@@ -54,7 +54,7 @@ namespace HybridTaskManager.UserConrols.CalendarUI
         public TaskItemControl()
         {
             InitializeComponent();
-            DataContext = this; // чтобы биндинг сработал на зависимости
+            DataContext = this; //
         }
     }
 }
