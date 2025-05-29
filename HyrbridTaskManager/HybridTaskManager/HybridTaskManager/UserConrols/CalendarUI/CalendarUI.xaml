@@ -38,6 +38,33 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <Style x:Key="NavRoundButtonStyle" TargetType="Button">
+            <Setter Property="Width" Value="35"/>
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="Background" Value="#FF3B82F6"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Ellipse Fill="{TemplateBinding Background}"/>
+                            <ContentPresenter HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF2563EB"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </UserControl.Resources>
 
 
@@ -69,9 +96,9 @@
 
                     <Border Grid.Row="0">
                         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5">
-                            <Button Content="←" Width="30" Click="PrevWeek_Click" Margin="5"/>
+                            <Button Style="{StaticResource NavRoundButtonStyle}" Content="←" Click="PrevWeek_Click" Margin="5"/>
                             <TextBlock x:Name="WeekLabel" FontSize="16" VerticalAlignment="Center" Margin="10,0"/>
-                            <Button Content="→" Width="30" Click="NextWeek_Click" Margin="5"/>
+                            <Button Style="{StaticResource NavRoundButtonStyle}" Content="→" Click="NextWeek_Click" Margin="5"/>
                         </StackPanel>
                     </Border>
 
