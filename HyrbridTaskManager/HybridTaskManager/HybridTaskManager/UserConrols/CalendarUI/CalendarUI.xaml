@@ -103,8 +103,8 @@
                     </Border>
 
                     <Border Grid.Row="1"
-                         Background="#FF696969"
-                         BorderThickness="1"
+                         Background="#FF2563EB"
+                         BorderThickness="0"
                          BorderBrush="Black" Margin="0,0,0,5"
                          x:Name="DayBorder">
                         <Grid>
@@ -165,7 +165,7 @@
                             x:Name="CalendarBorder"
                             Background="White"
                             BorderBrush="LightGray"
-                            BorderThickness="1">
+                            BorderThickness="0">
                         <ScrollViewer VerticalScrollBarVisibility="Auto"
                                       HorizontalScrollBarVisibility="Disabled"
                                       Margin="0">
