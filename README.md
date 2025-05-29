@@ -16,7 +16,7 @@
 ## Использование
 Перейти на наш Wiki счачть архив, разархивировать его и запустить EXE файл. 
 ## Разработка
-[Wiki] (https://github.com/SVARGus/HybridTaskManager/wiki/01_%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5-%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0)
+[Wiki](https://github.com/SVARGus/HybridTaskManager/wiki/01_%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5-%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0)
 ### Требования
 Для установки и запуска проекта, необходим .NET последней версии
 ## Deploy и CI/CD
@@ -33,7 +33,7 @@
 ## Команда проекта
 Оставьте пользователям контакты и инструкции, как связаться с командой разработки.
 
-- [Арделян Роман ](https://github.com/MadeiveTheMagician) — Teamleader и Back-End разработчик.
+- [Арделян Роман](https://github.com/MadeiveTheMagician) — Teamleader и Back-End разработчик.
 - [Кузнецов Павел](https://github.com/SVARGus) - Front-End разработчик и тестировщик.
 - [Беляев Иван](https://github.com/Ivan255Mhz) - Front-End разработчик и тестировщик.
 - [Абылгазиев Намыс](https://github.com/namys333) - Front-End разработчик и тестировщик.
