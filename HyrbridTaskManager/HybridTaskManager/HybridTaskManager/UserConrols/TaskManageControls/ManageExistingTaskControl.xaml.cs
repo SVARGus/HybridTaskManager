@@ -1,18 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using HybridTaskManager.DataBaseSimulation;
 using HybridTaskManager.DTO.DictionaryEntity;
 using HybridTaskManager.DTO.ProjectsAndProjectRoles.UserEntity;
@@ -21,7 +8,7 @@ using HybridTaskManager.Factories;
 
 namespace HybridTaskManager.UserConrols.TaskManageControls
 {
-    public partial class ManageExistingTaskControl : UserControl
+    public partial class ManageExistingTaskControl : System.Windows.Controls.UserControl
     {
         public ObservableCollection<Project> Projects { get; set; } = new(ProjectDataBase.Projects);
         public ObservableCollection<HybridTaskManager.DTO.DictionaryEntity.TaskStatus> Statuses { get; set; } = new(StatusTypeDataBase.TaskStatuses);
@@ -59,7 +46,7 @@ namespace HybridTaskManager.UserConrols.TaskManageControls
                     var existingTask = TaskDataBase.TaskBase.FirstOrDefault(t => t.Id == editedTask.Id); 
                     if (existingTask == null)
                         {
-                            MessageBox.Show("Задача не найдена в базе");
+                            System.Windows.MessageBox.Show("Задача не найдена в базе");
                             return;
                         }
                     existingTask.Title = editedTask.Title;
@@ -73,7 +60,8 @@ namespace HybridTaskManager.UserConrols.TaskManageControls
                     existingTask.DeadLine = editedTask.DeadLine;
                     existingTask.Tags = editedTask.Tags;
 
-                    MessageBox.Show("Задача сохранена");
+                    System.Windows.MessageBox.Show("Задача сохранена");
+                    CloseWindow(true);
                 }
             }
             if (IsCreate)
@@ -92,6 +80,20 @@ namespace HybridTaskManager.UserConrols.TaskManageControls
                         BeginDate.SelectedDate.Value,
                         DeadLine.SelectedDate.Value
                     );
+                TaskDataBase.TaskBase.Add( newTask );
+                CloseWindow(true);
+            }
+        }
+
+        private void CloseWindow(bool result)
+        {
+            Window parentWindow = Window.GetWindow( this );
+            {
+                if (parentWindow is Window dialog && dialog.IsLoaded && dialog.IsActive)
+                {
+                    dialog.DialogResult = result;
+                }
+                parentWindow.Close();
             }
         }
     }
