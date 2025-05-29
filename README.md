@@ -33,7 +33,7 @@
 ## Команда проекта
 Оставьте пользователям контакты и инструкции, как связаться с командой разработки.
 
-- [Арделян Роман ](https://github.com/MadeiveTheMagician) — Teamleader и Back-End разработчик.
+- [Арделян Роман](https://github.com/MadeiveTheMagician) — Teamleader и Back-End разработчик.
 - [Кузнецов Павел](https://github.com/SVARGus) - Front-End разработчик и тестировщик.
 - [Беляев Иван](https://github.com/Ivan255Mhz) - Front-End разработчик и тестировщик.
 - [Абылгазиев Намыс](https://github.com/namys333) - Front-End разработчик и тестировщик.
