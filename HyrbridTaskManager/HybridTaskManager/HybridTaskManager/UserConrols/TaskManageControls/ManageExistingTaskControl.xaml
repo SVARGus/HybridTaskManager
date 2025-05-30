@@ -109,7 +109,7 @@
                 <Button x:Name="SaveButton" Content="Сохранить" Click="SaveButton_Click"/>
             </Grid>
             <Grid Grid.Row="5" Grid.Column="1" Margin="10,0,25,50">
-                <Button x:Name="CancelButton" Content="Отмена"/>
+                <Button x:Name="CancelButton" Content="Отмена" Click="CancelButton_Click"/>
             </Grid>
         </Grid>
     </Border>

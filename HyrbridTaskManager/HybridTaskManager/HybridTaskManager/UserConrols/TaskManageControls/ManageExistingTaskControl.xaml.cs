@@ -1,33 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using HybridTaskManager.DataBaseSimulation;
 using HybridTaskManager.DTO.DictionaryEntity;
 using HybridTaskManager.DTO.ProjectsAndProjectRoles.UserEntity;
 using HybridTaskManager.DTO.ProjectsAndProjectRoles;
 using HybridTaskManager.Factories;
+using HybridTaskManager.LogSystem;
 
 namespace HybridTaskManager.UserConrols.TaskManageControls
 {
-    public partial class ManageExistingTaskControl : UserControl
+    public partial class ManageExistingTaskControl : System.Windows.Controls.UserControl
     {
-        public ObservableCollection<Project> Projects { get; set; } = new(ProjectDataBase.Projects);
-        public ObservableCollection<HybridTaskManager.DTO.DictionaryEntity.TaskStatus> Statuses { get; set; } = new(StatusTypeDataBase.TaskStatuses);
-        public ObservableCollection<TaskPriority> Priorities { get; set; } = new(TaskPriorityDataBase.TaskPriorities);
-        public ObservableCollection<TaskType> Types { get; set; } = new(TaskTypesDataBase.TaskTypes);
-        public ObservableCollection<User> Users { get; set; } = new(UserDataBase.Users);
+        public ObservableCollection<Project> Projects { get; set; } = new(ProjectData.Projects);
+        public ObservableCollection<HybridTaskManager.DTO.DictionaryEntity.TaskStatus> Statuses { get; set; } = new(StatusTypeData.TaskStatuses);
+        public ObservableCollection<TaskPriority> Priorities { get; set; } = new(TaskPriorityData.TaskPriorities);
+        public ObservableCollection<TaskType> Types { get; set; } = new(TaskTypesData.TaskTypes);
+        public ObservableCollection<User> Users { get; set; } = new(UserData.Users);
 
         public bool IsCreate = false;
         public bool IsEdit = false;
@@ -56,10 +44,10 @@ namespace HybridTaskManager.UserConrols.TaskManageControls
             {
                 if (DataContext is TaskItem editedTask)
                 {
-                    var existingTask = TaskDataBase.TaskBase.FirstOrDefault(t => t.Id == editedTask.Id); 
+                    var existingTask = TaskData.TaskBase.FirstOrDefault(t => t.Id == editedTask.Id); 
                     if (existingTask == null)
                         {
-                            MessageBox.Show("Задача не найдена в базе");
+                            System.Windows.MessageBox.Show("Задача не найдена в базе");
                             return;
                         }
                     existingTask.Title = editedTask.Title;
@@ -73,7 +61,9 @@ namespace HybridTaskManager.UserConrols.TaskManageControls
                     existingTask.DeadLine = editedTask.DeadLine;
                     existingTask.Tags = editedTask.Tags;
 
-                    MessageBox.Show("Задача сохранена");
+                    System.Windows.MessageBox.Show("Задача сохранена");
+                    AppLogger.Info($"Задача обновлена: {existingTask.Title} (ID: {existingTask.Id})");
+                    CloseWindow(true);
                 }
             }
             if (IsCreate)
@@ -92,7 +82,28 @@ namespace HybridTaskManager.UserConrols.TaskManageControls
                         BeginDate.SelectedDate.Value,
                         DeadLine.SelectedDate.Value
                     );
+                TaskData.TaskBase.Add( newTask );
+                AppLogger.Info($"Создана новая задача: {newTask.Title} (ID: {newTask.Id})");
+                CloseWindow(true);
             }
+        }
+
+        private void CloseWindow(bool result)
+        {
+            Window parentWindow = Window.GetWindow( this );
+            {
+                if (parentWindow is Window dialog && dialog.IsLoaded && dialog.IsActive)
+                {
+                    dialog.DialogResult = result;
+                }
+                parentWindow.Close();
+            }
+        }
+
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            AppLogger.Info("Отмена создания/редактирования задачи");
+            CloseWindow(false);
         }
     }
 }

@@ -1,34 +1,54 @@
 ﻿using System.Collections.ObjectModel;
-using System.Text;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using HybridTaskManager.DataBaseSimulation;
 using HybridTaskManager.DTO.DictionaryEntity;
-using HybridTaskManager.DTO.ProjectsAndProjectRoles.UserEntity;
-using HybridTaskManager.DTO.ProjectsAndProjectRoles;
-using HybridTaskManager.UserConrols.TaskManageControls;
 using TaskStatus = HybridTaskManager.DTO.DictionaryEntity.TaskStatus;
+using HybridTaskManager.LocalSaveDataManage;
+using Ookii.Dialogs.Wpf;
+using HybridTaskManager.UserConrols.CalendarUI;
+using HybridTaskManager.DTO.ProjectsAndProjectRoles.UserEntity;
+using System.Windows.Controls;
+using HybridTaskManager.LogSystem;
 
 namespace HybridTaskManager
 {
     public partial class MainWindow : Window
     {
+        private User CurrentUser = new User("Вы", new UserRole("Администратор", true, true));
         public MainWindow()
         {
+            AppLogger.Info("----- Новая сессия: " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " -----");
+
+            AppLogger.Info("Запуск приложения HybridTaskManager");
+            AppLogger.Info("Загрузка данных задач и проектов");
+
+            AppLogger.Info("Инициализация пользовательского интерфейса");
+
             InitializeComponent();
+
+            AppLogger.Info("Загрузка тестовых данных для Kanban-доски");
+
+            ProjectsList.ItemsSource = ProjectData.Projects;
             LoadKanbanTestData();
+            AppLogger.Info("Загрузка пользовательского интерфейса календаря в отдельную вкладку");
+            var calendarControl = new CalendarUI(CurrentUser);
+
+            // Находим нужный TabItem (например, по имени)
+            var calendarTab = MainTabControl.Items
+                .OfType<TabItem>()
+                .FirstOrDefault(ti => (string)ti.Header == "Календарь");
+
+            if (calendarTab != null)
+            {
+                // Устанавливаем содержимое вкладки в созданный контрол
+                calendarTab.Content = calendarControl;
+            }
+
         }
 
         private void LoadKanbanTestData()
         {
-            var allTasks = TaskDataBase.TaskBase;
+            var allTasks = TaskData.TaskBase;
 
             var statuses = allTasks
                 .Select(t => t.Status)
@@ -63,5 +83,23 @@ namespace HybridTaskManager
             public TaskStatus Status { get; set; }
             public ObservableCollection<TaskItem> Tasks { get; set; }
         }
+
+        private void LocalSaveDirButton_Click(object sender, RoutedEventArgs e)
+        {
+            var dialog = new VistaFolderBrowserDialog
+            {
+                Description = "Выберите папку",
+                UseDescriptionForTitle = true, // Использовать Description как заголовок окна
+                ShowNewFolderButton = true // Показывать кнопку "Создать папку"
+            };
+
+            bool? result = dialog.ShowDialog();
+
+            if (result == true)
+            {
+                string selectedPath = dialog.SelectedPath;
+            }
+        }
+
     }
 }

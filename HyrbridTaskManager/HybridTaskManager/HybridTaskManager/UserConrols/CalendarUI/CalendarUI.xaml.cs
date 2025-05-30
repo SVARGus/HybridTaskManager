@@ -1,5 +1,7 @@
 ﻿using HybridTaskManager.DataBaseSimulation;
 using HybridTaskManager.DTO.DictionaryEntity;
+using HybridTaskManager.DTO.ProjectsAndProjectRoles.UserEntity;
+using HybridTaskManager.LogSystem;
 using HybridTaskManager.UserConrols.TaskManageControls;
 using System;
 using System.Collections.Generic;
@@ -27,10 +29,15 @@ namespace HybridTaskManager.UserConrols.CalendarUI
 
         private bool isInitialized = false;
         private DateTime currentWeekStart;
+        private User CurrentUser;
 
-        public CalendarUI()
+        public CalendarUI(User curUser)
         {
+            AppLogger.Info("Инициализация пользовательского интерфейса календаря");
             InitializeComponent();
+            AppLogger.Info("Установка текущего пользователя в календаре");
+            CurrentUser = curUser;
+            AppLogger.Info("Подписка на событие загрузки пользовательского интерфейса календаря");
             Loaded += CalendarUI_Loaded;
 
         }
@@ -38,20 +45,25 @@ namespace HybridTaskManager.UserConrols.CalendarUI
         private List<TaskItem> GetTasksForWeek(DateTime weekStart)
         {
             DateTime weekEnd = weekStart.AddDays(6);
-            try
+            if (TaskData.TaskBase.Count != 0)
             {
-                return TaskDataBase.TaskBase
-                    .Where(task =>
-                        task.StartAt.Date <= weekEnd.Date &&  // началась до конца недели
-                        task.DeadLine.Date >= weekStart.Date  // закончится после начала недели
-                    )
-                    .ToList();
+                try
+                {
+                    return TaskData.TaskBase
+                        .Where(task =>
+                            task.StartAt.Date <= weekEnd.Date &&  // началась до конца недели
+                            task.DeadLine.Date >= weekStart.Date  // закончится после начала недели
+                        )
+                        .ToList();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Ошибка: {ex.Message}\n\nStackTrace:\n{ex.StackTrace}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return new List<TaskItem>();
+                }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Ошибка: {ex.Message}\n\nStackTrace:\n{ex.StackTrace}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                return new List<TaskItem>();
-            }
+            
+            return new List<TaskItem>();
         }
 
         private int FindAvailableRow(List<(int startCol, int endCol, int row)> placed, int start, int end)
@@ -93,7 +105,7 @@ namespace HybridTaskManager.UserConrols.CalendarUI
 
             if (result == MessageBoxResult.Yes)
             {
-                TaskDataBase.TaskBase.Remove(task); 
+                TaskData.TaskBase.Remove(task); 
                 FillTasksGrid(currentWeekStart);    
             }
         }
@@ -248,7 +260,9 @@ namespace HybridTaskManager.UserConrols.CalendarUI
 
         private void AddTaskButton_Click(object sender, RoutedEventArgs e)
         {
-            var manageTaskControl = new ManageExistingTaskControl(UserDataBase.Users[0]);
+            AppLogger.Info("Открытие окна создания новой задачи");
+
+            var manageTaskControl = new ManageExistingTaskControl(CurrentUser);
 
             var window = new Window()
             {
