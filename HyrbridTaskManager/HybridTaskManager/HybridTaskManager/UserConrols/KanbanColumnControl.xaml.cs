@@ -12,6 +12,13 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using HybridTaskManager.LogSystem;
+using HybridTaskManager.UserConrols.TaskManageControls;
+using HybridTaskManager.DataBaseSimulation;
+using HybridTaskManager.DTO.DictionaryEntity;
+using HybridTaskManager.DTO.ProjectsAndProjectRoles.UserEntity;
+using System.Collections.ObjectModel;
+using TaskStatus = HybridTaskManager.DTO.DictionaryEntity.TaskStatus;
 
 namespace HybridTaskManager.UserConrols
 {
@@ -20,6 +27,8 @@ namespace HybridTaskManager.UserConrols
     /// </summary>
     public partial class KanbanColumnControl : UserControl
     {
+        private User CurrentUser;
+
         public KanbanColumnControl()
         {
             InitializeComponent();
@@ -27,7 +36,33 @@ namespace HybridTaskManager.UserConrols
 
         private void AddTask_Click(object sender, RoutedEventArgs e)
         {
-            // TODO: Добавить новую задачу в эту колонку
+            AppLogger.Info("Открытие окна создания новой задачи");
+
+            dynamic columnVm = ((FrameworkElement)sender).DataContext;
+            TaskStatus status = columnVm.Status;
+            ObservableCollection<TaskItem> tasks = columnVm.Tasks;
+
+            var manageTaskControl = new ManageExistingTaskControl(CurrentUser);
+
+            var window = new Window()
+            {
+                Title = "Новая задача",
+                Content = manageTaskControl,
+                SizeToContent = SizeToContent.WidthAndHeight,
+                Owner = Window.GetWindow(this),
+                WindowStartupLocation = WindowStartupLocation.CenterOwner,
+                ResizeMode = ResizeMode.NoResize
+            };
+
+            if (window.ShowDialog() == true)
+            {
+                // добавляем задачу в колонку
+                if (manageTaskControl.DataContext is TaskItem newTask)
+                {
+                    columnVm.Tasks.Add(newTask);
+                    AppLogger.Info($"Задача добавлена в статус \"{status.Name}\": {newTask.Title}");
+                }
+            }
         }
 
         private void RenameColumn_Click(object sender, RoutedEventArgs e)

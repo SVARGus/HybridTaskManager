@@ -48,15 +48,15 @@ namespace HybridTaskManager
 
         private void LoadKanbanTestData()
         {
+            // 1) Получаем тестовые задачи
             var allTasks = TaskData.TaskBase;
 
-            var statuses = allTasks
-                .Select(t => t.Status)
-                .GroupBy(s => s.Id)
-                .Select(g => g.First())
-                .OrderBy(s => s.Order)
+            // 2) Получаем статусы ровно в том порядке, в каком они в JSON
+            var statuses = StatusTypeData.TaskStatuses
+                .OrderBy(s => s.Order)     // на всякий случай: JSON уже содержит порядок
                 .ToList();
 
+            // 3) Строим колонки: для каждого статуса свои задачи
             var columns = statuses
                 .Select(s => new StatusColumnViewModel
                 {
@@ -66,12 +66,14 @@ namespace HybridTaskManager
                 })
                 .ToList();
 
+            // 4) Добавляем «пустой» столбец для создания нового статуса/колонки
             columns.Add(new StatusColumnViewModel
             {
-                Status = new TaskStatus("Новый статус", statuses.Count + 1, "#CCCCCC"),
+                Status = new TaskStatus("Новый статус", statuses.Count, "#CCCCCC"),
                 Tasks = new ObservableCollection<TaskItem>()
             });
 
+            // 5) Привязываем получившийся набор к контролу
             KanbanBoard.DataContext = new
             {
                 StatusColumns = new ObservableCollection<StatusColumnViewModel>(columns)
