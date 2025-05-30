@@ -14,13 +14,15 @@
 - [PostgreSQL] (в планах).
 
 ## Использование
-Перейти на наш Wiki счачть архив, разархивировать его и запустить EXE файл. 
+Запустить EXE файл. 
 ## Разработка
 [Wiki](https://github.com/SVARGus/HybridTaskManager/wiki/01_%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5-%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0)
 ### Требования
 Для установки и запуска проекта, необходим .NET последней версии
 ## Deploy и CI/CD
-Перейти на наш [Wiki](https://github.com/SVARGus/HybridTaskManager/wiki) - скачать архив, разархивировать его и запустить EXE файл
+2 способа:
+1:Перейти на наш Wiki в раздел [Установка и Запуск]([https://github.com/SVARGus/HybridTaskManager/wiki](https://github.com/SVARGus/HybridTaskManager/wiki/07_%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-%D0%B8-%D0%B7%D0%B0%D0%BF%D1%83%D1%81%D0%BA)) - скачать архив, разархивировать его и запустить EXE файл.
+2: Установить GitHub, клонировать репозиторий из ветки Main и перейти в директорию в которую вы клонировали репозиторий следуйте по пути "Ваша папка"\HyrbridTaskManager\HybridTaskManager\HybridTaskManager\bin\Debug и запустите EXE файл с аналогичным названием.
 
 ## Contributing
 Как помочь в разработке проекта? Как отправить предложение или баг-репорт. Как отправить доработку (оформить pull request, какие стайлгайды используются). Можно вынести в отдельный файл — [Contributing.md](./CONTRIBUTING.md).
