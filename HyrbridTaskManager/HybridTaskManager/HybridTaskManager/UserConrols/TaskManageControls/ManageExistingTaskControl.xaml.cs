@@ -6,6 +6,7 @@ using HybridTaskManager.DTO.ProjectsAndProjectRoles.UserEntity;
 using HybridTaskManager.DTO.ProjectsAndProjectRoles;
 using HybridTaskManager.Factories;
 using HybridTaskManager.LogSystem;
+using NLog.LayoutRenderers;
 
 namespace HybridTaskManager.UserConrols.TaskManageControls
 {
@@ -69,6 +70,24 @@ namespace HybridTaskManager.UserConrols.TaskManageControls
             if (IsCreate)
             {
                 CastomTaskFactory taskFactory = new CastomTaskFactory();
+                if(CurrentUser == null)
+                {
+                    CurrentUser =  new User("Вы", new UserRole("Администратор", true, true));
+                }
+                if ( TaskName.Text == string.Empty || 
+                    (TaskDescription.Text == null || TaskDescription.Text == string.Empty) ||
+                    ProjectBelonging.SelectedItem == null ||
+                    ChosenTaskStatus.SelectedItem == null ||
+                    TasksType.SelectedItem == null ||
+                    TasksPriority.SelectedItem == null ||
+                    TaskPerformer.SelectedItem == null ||
+                    BeginDate.SelectedDate == null ||
+                    DeadLine.SelectedDate == null)
+                {// ПЕРЕДЕЛАТЬ
+                    MessageBox.Show("Пожалуйста, заполните все поля перед сохранением задачи.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
                 var newTask = taskFactory.CreateTask
                     (
                         TaskName.Text,
