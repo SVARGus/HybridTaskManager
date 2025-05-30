@@ -22,6 +22,7 @@
 ## Deploy и CI/CD
 2 способа:
 1:Перейти на наш Wiki в раздел [Установка и Запуск]([https://github.com/SVARGus/HybridTaskManager/wiki](https://github.com/SVARGus/HybridTaskManager/wiki/07_%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-%D0%B8-%D0%B7%D0%B0%D0%BF%D1%83%D1%81%D0%BA)) - скачать архив, разархивировать его и запустить EXE файл.
+
 2: Установить GitHub, клонировать репозиторий из ветки Main и перейти в директорию в которую вы клонировали репозиторий следуйте по пути "Ваша папка"\HyrbridTaskManager\HybridTaskManager\HybridTaskManager\bin\Debug и запустите EXE файл с аналогичным названием.
 
 ## Contributing
