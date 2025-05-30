@@ -1,1 +1,65 @@
-[]
+[
+  {
+    "Id": "bd173c7d-3815-4b76-8d71-10ba234da58d",
+    "Title": "1",
+    "Description": "1",
+    "ProjectId": "00000000-0000-0000-0000-000000000000",
+    "Project": {
+      "Id": "00000000-0000-0000-0000-000000000000",
+      "Name": "Test Project 1",
+      "Users": [],
+      "Tasks": []
+    },
+    "StatusId": "00000000-0000-0000-0000-000000000000",
+    "Status": {
+      "Id": "00000000-0000-0000-0000-000000000000",
+      "Name": "\u041D\u0430\u0437\u043D\u0430\u0447\u0435\u043D\u043E",
+      "Order": 0,
+      "HexColorCode": "#af33ff"
+    },
+    "TypeId": "d290f1ee-6c54-4b01-90e6-d701748f0851",
+    "Type": {
+      "Id": "d290f1ee-6c54-4b01-90e6-d701748f0851",
+      "Name": "\u0420\u0430\u0431\u043E\u0447\u0430\u044F \u0437\u0430\u0434\u0430\u0447\u0430"
+    },
+    "PriorityId": "d290f1ee-6c54-4b01-90e6-d701748f0851",
+    "Priority": {
+      "Id": "d290f1ee-6c54-4b01-90e6-d701748f0851",
+      "Name": "\u041D\u0438\u0437\u043A\u0438\u0439",
+      "Level": 0,
+      "HexColorCode": "#50ca3a"
+    },
+    "Tags": [],
+    "AssignedById": "8e1b6702-a11a-4248-901b-5dff47887054",
+    "AssignedBy": {
+      "Id": "8e1b6702-a11a-4248-901b-5dff47887054",
+      "UserName": "\u0412\u044B",
+      "RoleId": "c40b18b7-5a75-4836-a2e4-50ee9dfbbfda",
+      "Role": {
+        "Id": "c40b18b7-5a75-4836-a2e4-50ee9dfbbfda",
+        "Name": "",
+        "CanManageUsers": true,
+        "CanManageDictionaries": true
+      },
+      "Projects": []
+    },
+    "AssignedToId": "8417fc33-643a-4131-b901-e678dfb2b137",
+    "AssignedTo": {
+      "Id": "8417fc33-643a-4131-b901-e678dfb2b137",
+      "UserName": "\u0412\u0430\u0441\u044F \u041F\u0443\u043F\u043A\u0438\u043D",
+      "RoleId": "00000000-0000-0000-0000-000000000000",
+      "Role": {
+        "Id": "00000000-0000-0000-0000-000000000000",
+        "Name": "\u0420\u0430\u0437\u0440\u0430\u0431\u043E\u0442\u0447\u0438\u043A",
+        "CanManageUsers": false,
+        "CanManageDictionaries": false
+      },
+      "Projects": []
+    },
+    "CreatedAt": "2025-05-30T12:12:05.5798369Z",
+    "StartAt": "2025-05-30T00:00:00",
+    "DeadLine": "2025-06-03T00:00:00",
+    "FinishAt": "0001-01-01T00:00:00",
+    "UpdatedAt": []
+  }
+]

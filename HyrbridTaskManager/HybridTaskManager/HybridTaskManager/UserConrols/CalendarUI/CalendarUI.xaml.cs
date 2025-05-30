@@ -122,8 +122,8 @@ namespace HybridTaskManager.UserConrols.CalendarUI
 
                 var brushPriority = (SolidColorBrush)(new BrushConverter().ConvertFromString(task.Priority.HexColorCode) ?? Brushes.Transparent);
 
-                string hexColor = TaskColorHelper.GetColorByIndex(i);
-                var brush = (SolidColorBrush)(new BrushConverter().ConvertFromString(hexColor) ?? Brushes.LightGray);
+                string statusHex = task.Status?.HexColorCode ?? "#CCCCCC"; // цвет по умолчанию
+                var brush = (SolidColorBrush)(new BrushConverter().ConvertFromString(statusHex) ?? Brushes.LightGray);
 
                 var tooltip = new ToolTip
                 {

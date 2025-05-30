@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace HybridTaskManager.UserConrols.CalendarUI
 {
     /// <summary>
@@ -20,6 +21,12 @@ namespace HybridTaskManager.UserConrols.CalendarUI
     /// </summary>
     public partial class TaskItemControl : UserControl
     {
+
+
+
+        
+
+
         public static readonly DependencyProperty TitleProperty =
             DependencyProperty.Register(nameof(Title), typeof(string), typeof(TaskItemControl));
 
