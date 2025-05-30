@@ -140,6 +140,19 @@
                     <!-- Tasks List UserControl -->
                 </TabItem>
 
+                <TabItem Header="Матрица Эзенхауэра">
+                    <TabItem.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="Открыть в отдельном окне"/>
+                            <MenuItem Header="Обновить"/>
+                            <MenuItem Header="Настройки"/>
+                            <Separator/>
+                            <MenuItem Header="Закрыть вкладку"/>
+                        </ContextMenu>
+                    </TabItem.ContextMenu>
+                    <controls:EisenhowerMatrix x:Name="EisenhowerMatrix"/>
+                </TabItem>
+
                 <!-- Добавьте другие вкладки по необходимости -->
             </TabControl>
         </Grid>

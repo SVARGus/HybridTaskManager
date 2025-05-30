@@ -12,26 +12,6 @@ namespace HybridTaskManager.UserConrols
         public KanbanBoardControl()
         {
             InitializeComponent();
-            LoadTestData();
-        }
-
-        private void LoadTestData()
-        {
-            //var groupedTasks = TaskData.TaskBase
-            //    .GroupBy(t => t.Status.Id)
-            //    .ToDictionary(g => g.Key, g => g.ToList());
-
-            //foreach (var status in StatusTypeData.TaskStatuses)
-            //{
-            //    if (groupedTasks.TryGetValue(status.Id, out var tasks))
-            //    {
-            //        StatusColumns.Add(new StatusColumnViewModel(status, tasks));
-            //    }
-            //    else
-            //    {
-            //        StatusColumns.Add(new StatusColumnViewModel(status, new List<TaskItem>()));
-            //    }
-            //}
         }
 
         private void AddColumn_Click(object sender, RoutedEventArgs e)
