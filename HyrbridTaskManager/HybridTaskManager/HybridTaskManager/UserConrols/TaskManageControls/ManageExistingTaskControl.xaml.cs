@@ -5,6 +5,7 @@ using HybridTaskManager.DTO.DictionaryEntity;
 using HybridTaskManager.DTO.ProjectsAndProjectRoles.UserEntity;
 using HybridTaskManager.DTO.ProjectsAndProjectRoles;
 using HybridTaskManager.Factories;
+using HybridTaskManager.LogSystem;
 
 namespace HybridTaskManager.UserConrols.TaskManageControls
 {
@@ -61,6 +62,7 @@ namespace HybridTaskManager.UserConrols.TaskManageControls
                     existingTask.Tags = editedTask.Tags;
 
                     System.Windows.MessageBox.Show("Задача сохранена");
+                    AppLogger.Info($"Задача обновлена: {existingTask.Title} (ID: {existingTask.Id})");
                     CloseWindow(true);
                 }
             }
@@ -81,6 +83,7 @@ namespace HybridTaskManager.UserConrols.TaskManageControls
                         DeadLine.SelectedDate.Value
                     );
                 TaskData.TaskBase.Add( newTask );
+                AppLogger.Info($"Создана новая задача: {newTask.Title} (ID: {newTask.Id})");
                 CloseWindow(true);
             }
         }
@@ -99,6 +102,7 @@ namespace HybridTaskManager.UserConrols.TaskManageControls
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
+            AppLogger.Info("Отмена создания/редактирования задачи");
             CloseWindow(false);
         }
     }

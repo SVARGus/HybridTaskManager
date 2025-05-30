@@ -56,8 +56,14 @@
                 <StackPanel Orientation="Vertical">
                     <TextBlock Text="Проекты" FontWeight="Bold" Margin="8"/>
                     <ListBox x:Name="ProjectsList" Margin="8,0,8,8" DockPanel.Dock="Top" Height="200">
-                        <ListBoxItem Content="Проект A"/>
-                        <ListBoxItem Content="Проект B"/>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Ellipse Width="16" Height="16" Fill="Gray" Margin="0,0,8,0"/>
+                                    <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
                     </ListBox>
 
                     <Separator/>

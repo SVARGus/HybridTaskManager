@@ -8,6 +8,7 @@ using Ookii.Dialogs.Wpf;
 using HybridTaskManager.UserConrols.CalendarUI;
 using HybridTaskManager.DTO.ProjectsAndProjectRoles.UserEntity;
 using System.Windows.Controls;
+using HybridTaskManager.LogSystem;
 
 namespace HybridTaskManager
 {
@@ -16,10 +17,20 @@ namespace HybridTaskManager
         private User CurrentUser = new User("Вы", new UserRole("Администратор", true, true));
         public MainWindow()
         {
-            InitializeComponent();
-            LoadKanbanTestData();
-            CurrentLocalSaveDir.DataContext = LocalDataSaveManager.CurrentLocalSaveDirecoty;
+            AppLogger.Info("----- Новая сессия: " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " -----");
 
+            AppLogger.Info("Запуск приложения HybridTaskManager");
+            AppLogger.Info("Загрузка данных задач и проектов");
+
+            AppLogger.Info("Инициализация пользовательского интерфейса");
+
+            InitializeComponent();
+
+            AppLogger.Info("Загрузка тестовых данных для Kanban-доски");
+
+            ProjectsList.ItemsSource = ProjectData.Projects;
+            LoadKanbanTestData();
+            AppLogger.Info("Загрузка пользовательского интерфейса календаря в отдельную вкладку");
             var calendarControl = new CalendarUI(CurrentUser);
 
             // Находим нужный TabItem (например, по имени)
@@ -87,7 +98,6 @@ namespace HybridTaskManager
             if (result == true)
             {
                 string selectedPath = dialog.SelectedPath;
-                LocalDataSaveManager.CurrentLocalSaveDirecoty = selectedPath;
             }
         }
     }

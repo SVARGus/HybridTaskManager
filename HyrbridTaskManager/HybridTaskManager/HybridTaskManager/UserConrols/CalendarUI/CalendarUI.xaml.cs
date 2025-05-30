@@ -1,6 +1,7 @@
 ﻿using HybridTaskManager.DataBaseSimulation;
 using HybridTaskManager.DTO.DictionaryEntity;
 using HybridTaskManager.DTO.ProjectsAndProjectRoles.UserEntity;
+using HybridTaskManager.LogSystem;
 using HybridTaskManager.UserConrols.TaskManageControls;
 using System;
 using System.Collections.Generic;
@@ -32,8 +33,11 @@ namespace HybridTaskManager.UserConrols.CalendarUI
 
         public CalendarUI(User curUser)
         {
+            AppLogger.Info("Инициализация пользовательского интерфейса календаря");
             InitializeComponent();
+            AppLogger.Info("Установка текущего пользователя в календаре");
             CurrentUser = curUser;
+            AppLogger.Info("Подписка на событие загрузки пользовательского интерфейса календаря");
             Loaded += CalendarUI_Loaded;
 
         }
@@ -256,6 +260,8 @@ namespace HybridTaskManager.UserConrols.CalendarUI
 
         private void AddTaskButton_Click(object sender, RoutedEventArgs e)
         {
+            AppLogger.Info("Открытие окна создания новой задачи");
+
             var manageTaskControl = new ManageExistingTaskControl(CurrentUser);
 
             var window = new Window()
