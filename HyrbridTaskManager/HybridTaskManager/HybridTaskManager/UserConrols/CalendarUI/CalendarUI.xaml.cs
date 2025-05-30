@@ -290,6 +290,7 @@ namespace HybridTaskManager.UserConrols.CalendarUI
             UpdateWeekLabel();
         }
 
+
         private void NextWeek_Click(object sender, RoutedEventArgs e)
         {
             currentWeekStart = currentWeekStart.AddDays(7);
