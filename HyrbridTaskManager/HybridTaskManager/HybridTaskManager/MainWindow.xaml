@@ -65,7 +65,11 @@
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
-
+                    <Button Margin="8">
+                        <Button.Content>
+                            <TextBlock Text="Добавить проект" Margin="8"/>
+                        </Button.Content>
+                    </Button>
                     <Separator/>
 
                     <TextBlock Text="Сторонние сервисы" FontWeight="Bold" Margin="8"/>
