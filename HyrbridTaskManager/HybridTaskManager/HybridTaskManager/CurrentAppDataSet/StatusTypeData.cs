@@ -14,7 +14,7 @@ namespace HybridTaskManager.DataBaseSimulation
 
         static StatusTypeData()
         {
-            Repository = new JsonRepository<TaskStatus>("LocalSaveDataManage/Config/TaskDataConfig.json");
+            Repository = new JsonRepository<TaskStatus>(@"..\..\..\LocalSaveDataManage\Config\StatusTypeConfig.json");
         }
 
         public static void Save() => Repository.Save();

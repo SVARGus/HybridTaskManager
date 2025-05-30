@@ -11,6 +11,10 @@ namespace HybridTaskManager.DTO.ProjectsAndProjectRoles
         public ObservableCollection<UserProject> Users { get; set; } = new();
         public ObservableCollection<TaskItem> Tasks { get; set; } = new();
 
+        public Project()
+        {
+            
+        }
         public Project(string prjectName, ObservableCollection<UserProject> users, ObservableCollection<TaskItem> tasks)
         {
             Id = Guid.NewGuid();

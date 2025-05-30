@@ -13,7 +13,7 @@ namespace HybridTaskManager.DataBaseSimulation
 
         static UserRoleData()
         {
-            Repository = new JsonRepository<UserRole>("LocalSaveDataManage/Config/TaskDataConfig.json");
+            Repository = new JsonRepository<UserRole>(@"..\..\..\LocalSaveDataManage\Config\UserRoleConfig.json");
         }
 
         public static void Save() => Repository.Save();

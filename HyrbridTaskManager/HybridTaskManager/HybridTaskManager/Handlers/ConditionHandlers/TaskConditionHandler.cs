@@ -111,11 +111,15 @@ namespace HybridTaskManager.Handlers.ConditionHandlers
         // Проверка валидности задачи: не null, есть исполнитель, статус, дедлайн и хотя бы один тег(доработать)
         public bool IsValidTask(TaskItem task)
         {
-            return task != null
-                && HasAssignee(task)
-                && HasStatus(task)
-                && HasDeadline(task);
-                //&& HasTags(task);
+            if (task != null
+                //&& HasAssignee(task)
+                //&& HasStatus(task)
+                //&& HasDeadline(task))
+                )
+            {
+                return true;
+            }
+            return false;       
         }
     }
 }

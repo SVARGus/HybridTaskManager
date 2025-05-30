@@ -71,7 +71,8 @@
                     <Separator/>
                         <Border Margin="8">
                             <Button x:Name="LocalSaveDirButton" 
-                                        Height="30" Click="LocalSaveDirButton_Click">
+                                        Height="30" Click="LocalSaveDirButton_Click"
+                                        IsEnabled="False">
                                 <Button.Content>
                                     <TextBlock Text="Выбрать локальную дирректорию"/>
                                 </Button.Content>

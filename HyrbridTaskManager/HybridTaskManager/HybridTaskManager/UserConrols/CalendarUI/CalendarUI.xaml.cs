@@ -41,20 +41,25 @@ namespace HybridTaskManager.UserConrols.CalendarUI
         private List<TaskItem> GetTasksForWeek(DateTime weekStart)
         {
             DateTime weekEnd = weekStart.AddDays(6);
-            try
+            if (TaskData.TaskBase.Count != 0)
             {
-                return TaskData.TaskBase
-                    .Where(task =>
-                        task.StartAt.Date <= weekEnd.Date &&  // началась до конца недели
-                        task.DeadLine.Date >= weekStart.Date  // закончится после начала недели
-                    )
-                    .ToList();
+                try
+                {
+                    return TaskData.TaskBase
+                        .Where(task =>
+                            task.StartAt.Date <= weekEnd.Date &&  // началась до конца недели
+                            task.DeadLine.Date >= weekStart.Date  // закончится после начала недели
+                        )
+                        .ToList();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Ошибка: {ex.Message}\n\nStackTrace:\n{ex.StackTrace}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return new List<TaskItem>();
+                }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Ошибка: {ex.Message}\n\nStackTrace:\n{ex.StackTrace}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                return new List<TaskItem>();
-            }
+            
+            return new List<TaskItem>();
         }
 
         private int FindAvailableRow(List<(int startCol, int endCol, int row)> placed, int start, int end)

@@ -11,7 +11,7 @@ namespace HybridTaskManager.DataBaseSimulation
 
         static ProjectData()
         {
-            LoadFromJson("LocalSaveDataManage/Config/TaskDataConfig.json");
+            LoadFromJson(@"..\..\..\LocalSaveDataManage\Config\ProjectDataConfig.json");
         }
 
         private static void LoadFromJson(string path)

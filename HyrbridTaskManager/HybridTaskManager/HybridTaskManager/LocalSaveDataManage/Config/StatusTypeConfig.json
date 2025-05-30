@@ -2,21 +2,21 @@
     {
         "Name": "Назначено",
         "Order": 0,
-        "Color": "#af33ff"
+        "HexColorCode": "#af33ff"
     },
     {
         "Name": "В процессе",
         "Order": 1,
-        "Color": "#fff033"
+        "HexColorCode": "#fff033"
     },
     {
         "Name": "Выполнено",
         "Order": 2,
-        "Color": "#5bff33"
+        "HexColorCode": "#5bff33"
     },
     {
         "Name": "Просрочено",
         "Order": 3,
-        "Color": "#ca3a3a"
+        "HexColorCode": "#ca3a3a"
     }
 ]

@@ -1,12 +1,14 @@
 [
     {
+        "Id": "some-guid-here",
         "Name": "Разработчик",
-        "IsAdmin": false,
-        "CanEdit": true
+        "CanManageUsers": false,
+        "CanManageDictionaries": true
     },
     {
+        "Id": "some-guid-here",
         "Name": "Дизайнер",
-        "IsAdmin": false,
-        "CanEdit": true
+        "CanManageUsers": false,
+        "CanManageDictionaries": true
     }
 ]

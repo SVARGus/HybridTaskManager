@@ -1,17 +1,17 @@
 [
     {
         "Name": "Test Project 1",
-        "UserProjects": [],
+        "Users": [],
         "Tasks": []
     },
     {
         "Name": "Test Project 2",
-        "UserProjects": [],
+        "Users": [],
         "Tasks": []
     },
     {
         "Name": "Test Project 3",
-        "UserProjects": [],
+        "Users": [],
         "Tasks": []
     }
 ]

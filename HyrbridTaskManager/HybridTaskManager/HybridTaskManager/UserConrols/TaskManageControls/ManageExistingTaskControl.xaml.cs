@@ -96,5 +96,10 @@ namespace HybridTaskManager.UserConrols.TaskManageControls
                 parentWindow.Close();
             }
         }
+
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            CloseWindow(false);
+        }
     }
 }

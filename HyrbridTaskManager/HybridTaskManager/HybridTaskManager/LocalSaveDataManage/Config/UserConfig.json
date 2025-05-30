@@ -1,27 +1,29 @@
-{
-    [
-        {
-            "Name": "Вася Пупкин",
-            "Role": {
-                "Name": "Разработчик",
-                "IsAdmin": false,
-                "CanEditTasks": true
-            }
+[
+    {
+        "UserName": "Вася Пупкин",
+        "Role": {
+            "Name": "Разработчик",
+            "IsAdmin": false,
+            "CanEditTasks": true
         },
-        {
-            "Name": "Серёжа Валенков",
-            "Role": {
-                "Name": "Разработчик",
-                "IsAdmin": false,
-                "CanEditTasks": true
-            }
+        "Projects": []
+    },
+    {
+        "UserName": "Серёжа Валенков",
+        "Role": {
+            "Name": "Разработчик",
+            "IsAdmin": false,
+            "CanEditTasks": true
         },
-        {
-            "Name": "Гриша Ламер",
-            "Role": {
-                "Name": "Разработчик",
-                "IsAdmin": false,
-                "CanEditTasks": true
-            }
-        }
-    ]
+        "Projects": []
+    },
+    {
+        "UserName": "Гриша Ламер",
+        "Role": {
+            "Name": "Разработчик",
+            "IsAdmin": false,
+            "CanEditTasks": true
+        },
+        "Projects": []
+    }
+]

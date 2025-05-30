@@ -13,7 +13,7 @@ namespace HybridTaskManager.DataBaseSimulation
 
         static TaskPriorityData()
         {
-            Repository = new JsonRepository<TaskPriority>("LocalSaveDataManage/Config/TaskDataConfig.json");
+            Repository = new JsonRepository<TaskPriority>(@"..\..\..\LocalSaveDataManage\Config\TaskPriorityConfig.json");
         }
 
         public static void Save() => Repository.Save();
