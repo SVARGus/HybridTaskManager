@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace HybridTaskManager.UserControl
+namespace HybridTaskManager.UserControls
 {
     /// <summary>
     /// Логика взаимодействия для EisenhowerMatrix.xaml
