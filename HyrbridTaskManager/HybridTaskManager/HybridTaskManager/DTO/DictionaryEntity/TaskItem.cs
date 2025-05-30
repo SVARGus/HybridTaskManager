@@ -1,79 +1,177 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using HybridTaskManager.DTO.ProjectsAndProjectRoles;
 using HybridTaskManager.DTO.ProjectsAndProjectRoles.UserEntity;
 
 namespace HybridTaskManager.DTO.DictionaryEntity
 {
-    public class TaskItem
+    public class TaskItem : INotifyPropertyChanged
     {
-        // Уникальный ID задачи, во избежание коллизии
-        public Guid Id;
+        private Guid _id;
+        private string _title;
+        private string _description;
+        private Guid _projectId;
+        private Project _project;
+        private Guid _statusId;
+        private TaskStatus _status;
+        private Guid _typeId;
+        private TaskType _type;
+        private Guid _priorityId;
+        private TaskPriority _priority;
+        private ObservableCollection<TaskTag> _tags;
+        private Guid _assignedById;
+        private User _assignedBy;
+        private Guid _assignedToId;
+        private User _assignedTo;
+        private DateTime _createdAt;
+        private DateTime _startAt;
+        private DateTime _deadLine;
+        private DateTime _finishAt;
+        private ObservableCollection<DateTime?> _updatedAt;
 
-        // Название задачи
-        public string Title;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
-        // Описание задачи
-        public string Description;
+        protected void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
 
-        // ID проекта, за которым задача закреплена
-        public Guid ProjectId;
+        public Guid Id
+        {
+            get => _id;
+            set { if (_id != value) { _id = value; OnPropertyChanged(); } }
+        }
 
-        // Ссылка на сущность проекта
-        public Project Project;
+        public string Title
+        {
+            get => _title;
+            set { if (_title != value) { _title = value; OnPropertyChanged(); } }
+        }
 
-        // ID статуса задачи
-        public Guid StatusId;
+        public string Description
+        {
+            get => _description;
+            set { if (_description != value) { _description = value; OnPropertyChanged(); } }
+        }
 
-        // Ссылка на сущность статуса
-        public TaskStatus Status;
+        public Guid ProjectId
+        {
+            get => _projectId;
+            set { if (_projectId != value) { _projectId = value; OnPropertyChanged(); } }
+        }
 
-        // ID Типа задачи
-        public Guid TypeId;
+        public Project Project
+        {
+            get => _project;
+            set { if (_project != value) { _project = value; OnPropertyChanged(); } }
+        }
 
-        // Ссылка на сущность типа задачи
-        public TaskType Type;
+        public Guid StatusId
+        {
+            get => _statusId;
+            set { if (_statusId != value) { _statusId = value; OnPropertyChanged(); } }
+        }
 
-        // ID приоритета задачи
-        public Guid PriorityId;
+        public TaskStatus Status
+        {
+            get => _status;
+            set { if (_status != value) { _status = value; OnPropertyChanged(); } }
+        }
 
-        // Ссылка на сущность приоритета задачи
-        public TaskPriority Priority;
+        public Guid TypeId
+        {
+            get => _typeId;
+            set { if (_typeId != value) { _typeId = value; OnPropertyChanged(); } }
+        }
 
-        // Перечень тегов, закреплённых за задачей
-        public ObservableCollection<TaskTag> Tags = new();
+        public TaskType Type
+        {
+            get => _type;
+            set { if (_type != value) { _type = value; OnPropertyChanged(); } }
+        }
 
-        // ID пользователя, которым была назначена задача
-        public Guid AssignedById;
+        public Guid PriorityId
+        {
+            get => _priorityId;
+            set { if (_priorityId != value) { _priorityId = value; OnPropertyChanged(); } }
+        }
 
-        // Ссылка на сущность пользователя, которым была назначена задача
-        public User AssignedBy;
+        public TaskPriority Priority
+        {
+            get => _priority;
+            set { if (_priority != value) { _priority = value; OnPropertyChanged(); } }
+        }
 
-        // ID пользователя, которому была назначена задача
-        public Guid AssignedToId;
+        public ObservableCollection<TaskTag> Tags
+        {
+            get => _tags;
+            set { if (_tags != value) { _tags = value; OnPropertyChanged(); } }
+        }
 
-        // Ссылка на сущность пользователя, которому была назначена задача
-        public User AssignedTo;
+        public Guid AssignedById
+        {
+            get => _assignedById;
+            set { if (_assignedById != value) { _assignedById = value; OnPropertyChanged(); } }
+        }
 
-        // Время создания задачи
-        public DateTime CreatedAt = DateTime.UtcNow;
+        public User AssignedBy
+        {
+            get => _assignedBy;
+            set { if (_assignedBy != value) { _assignedBy = value; OnPropertyChanged(); } }
+        }
 
-        // Время начала исполнения задачи
-        public DateTime StartAt;
+        public Guid AssignedToId
+        {
+            get => _assignedToId;
+            set { if (_assignedToId != value) { _assignedToId = value; OnPropertyChanged(); } }
+        }
 
-        // Назначенное время исполнения задачи
-        public DateTime DeadLine;
+        public User AssignedTo
+        {
+            get => _assignedTo;
+            set { if (_assignedTo != value) { _assignedTo = value; OnPropertyChanged(); } }
+        }
 
-        // Фактическое время завершения задачи
-        public DateTime FinishAt;
+        public DateTime CreatedAt
+        {
+            get => _createdAt;
+            set { if (_createdAt != value) { _createdAt = value; OnPropertyChanged(); } }
+        }
 
-        // Время обновления статуса задачи
-        public ObservableCollection<DateTime?> UpdatedAt = new();
+        public DateTime StartAt
+        {
+            get => _startAt;
+            set { if (_startAt != value) { _startAt = value; OnPropertyChanged(); } }
+        }
 
-        public TaskItem() { }
+        public DateTime DeadLine
+        {
+            get => _deadLine;
+            set { if (_deadLine != value) { _deadLine = value; OnPropertyChanged(); } }
+        }
 
-        // Полный конструктор
+        public DateTime FinishAt
+        {
+            get => _finishAt;
+            set { if (_finishAt != value) { _finishAt = value; OnPropertyChanged(); } }
+        }
+
+        public ObservableCollection<DateTime?> UpdatedAt
+        {
+            get => _updatedAt;
+            set { if (_updatedAt != value) { _updatedAt = value; OnPropertyChanged(); } }
+        }
+
+        // Конструкторы
+        public TaskItem()
+        {
+            Tags = new ObservableCollection<TaskTag>();
+            UpdatedAt = new ObservableCollection<DateTime?>();
+            CreatedAt = DateTime.UtcNow;
+        }
+
         public TaskItem(
             Guid id,
             string title,
@@ -95,7 +193,7 @@ namespace HybridTaskManager.DTO.DictionaryEntity
             DateTime startAt,
             DateTime deadLine,
             DateTime finishAt,
-            ObservableCollection<DateTime?> updatedAt)
+            ObservableCollection<DateTime?> updatedAt) : this()
         {
             Id = id;
             Title = title;
@@ -108,7 +206,7 @@ namespace HybridTaskManager.DTO.DictionaryEntity
             Type = type;
             PriorityId = priorityId;
             Priority = priority;
-            Tags = tags ?? new();
+            Tags = tags ?? new ObservableCollection<TaskTag>();
             AssignedById = assignedById;
             AssignedBy = assignedBy;
             AssignedToId = assignedToId;
@@ -117,10 +215,9 @@ namespace HybridTaskManager.DTO.DictionaryEntity
             StartAt = startAt;
             DeadLine = deadLine;
             FinishAt = finishAt;
-            UpdatedAt = updatedAt ?? new();
+            UpdatedAt = updatedAt ?? new ObservableCollection<DateTime?>();
         }
 
-        // Перегрузка конструктора с получением данных из объектов
         public TaskItem(
             string title,
             string description,
@@ -131,9 +228,9 @@ namespace HybridTaskManager.DTO.DictionaryEntity
             User assignedBy,
             User assignedTo,
             DateTime startAt,
-            DateTime deadLine)
+            DateTime deadLine) : this()
         {
-            Id = Guid.NewGuid();               
+            Id = Guid.NewGuid();
             Title = title;
             Description = description;
 
@@ -155,12 +252,8 @@ namespace HybridTaskManager.DTO.DictionaryEntity
             AssignedTo = assignedTo;
             AssignedToId = assignedTo.Id;
 
-            CreatedAt = DateTime.UtcNow;
             StartAt = startAt;
             DeadLine = deadLine;
-
-            Tags = new ObservableCollection<TaskTag>();
-            UpdatedAt = new ObservableCollection<DateTime?>();
         }
     }
 }

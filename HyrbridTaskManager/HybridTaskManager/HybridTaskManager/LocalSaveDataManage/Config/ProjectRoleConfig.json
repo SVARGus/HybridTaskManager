@@ -1,0 +1,20 @@
+[
+    {
+        "Name": "Менеджер",
+        "CanEditTasks": true,
+        "CanAssignTasks": true,
+        "CanManageProjectMembers": true
+    },
+    {
+        "Name": "Участник",
+        "CanEditTasks": true,
+        "CanAssignTasks": false,
+        "CanManageProjectMembers": false
+    },
+    {
+        "Name": "Наблюдатель",
+        "CanEditTasks": false,
+        "CanAssignTasks": false,
+        "CanManageProjectMembers": false
+    }
+]

@@ -1,0 +1,116 @@
+﻿<UserControl x:Class="HybridTaskManager.UserConrols.TaskManageControls.ManageExistingTaskControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             d:DesignHeight="630" d:DesignWidth="400"
+             Background="Azure">
+    <Border MaxWidth="400" MinWidth="400" MaxHeight="630" MinHeight="480">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Grid.Column="0" Grid.RowSpan="5" Grid.ColumnSpan="2" Margin="10"
+                  MaxWidth="350" MinWidth="350" MaxHeight="500" MinHeight="500">
+                <StackPanel>
+
+                    <TextBlock Text="Имя задачи" Height="25" Padding="2,6"/>
+                    <TextBox  Name ="TaskName"  Height="25" Padding="2" Text="{Binding Title, Mode=TwoWay}"/>
+
+                    <TextBlock Text="Описание задачи" Height="25" Padding="2,6"/>
+                    <TextBox Name ="TaskDescription" TextWrapping="Wrap" Height="25" Padding="2" Text="{Binding Description, Mode=TwoWay}"/>
+
+                    <TextBlock Text="К какому проекту принадлежит" Height="25" Padding="2,6"/>
+                    <ComboBox Name ="ProjectBelonging"
+                              Height="25" Padding="2"
+                              ItemsSource="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=Projects}"
+                              SelectedItem="{Binding Project, Mode=TwoWay}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Name}" />
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+
+                    <TextBlock Text="Статус задачи" Height="25" Padding="2,6"/>
+                    <ComboBox Name="ChosenTaskStatus"
+                              Height="25" Padding="2"
+                              ItemsSource="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=Statuses}"
+                              SelectedItem="{Binding Status, Mode=TwoWay}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Name}" />
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+
+                    <TextBlock Text="Приоритет задачи" Height="25" Padding="2,6"/>
+                    <ComboBox Name="TasksPriority"
+                              Height="25" Padding="2"
+                              ItemsSource="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=Priorities}"
+                              SelectedItem="{Binding Priority, Mode=TwoWay}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Name}" />
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+
+                    <TextBlock Text="Тип задачи" Height="25" Padding="2,6"/>
+                    <ComboBox Name="TasksType" 
+                              Height="25" Padding="2"
+                              ItemsSource="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=Types}"
+                              SelectedItem="{Binding Type, Mode=TwoWay}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Name}" />
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+
+                    <TextBlock Text="Исполнитель" Height="25" Padding="2,6"/>
+                    <ComboBox Name="TaskPerformer"
+                              Height="25" Padding="2"
+                              ItemsSource="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=Users}"
+                              SelectedItem="{Binding AssignedTo, Mode=TwoWay}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding UserName}" />
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+
+                    <TextBlock Text="Дата начала работы" Height="25" Padding="2,6"/>
+                    <DatePicker Name="BeginDate"
+                                Height="25" Padding="2" 
+                                SelectedDate="{Binding StartAt, Mode=TwoWay}"/>
+
+                    <TextBlock Text="Дата завершения работы" Height="25" Padding="2,6"/>
+                    <DatePicker Name="DeadLine"
+                                Height="25" Padding="2" 
+                                SelectedDate="{Binding DeadLine, Mode=TwoWay}"/>
+
+                    <TextBlock Text="Дополнительный тег" Height="25" Padding="2,6"/>
+                    <TextBox Name ="NewTag" Height="25" Padding="2" Text="{Binding Tags, Mode=TwoWay}"/>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="5" Grid.Column="0" Margin="25,0,10,50">
+                <Button x:Name="SaveButton" Content="Сохранить" Click="SaveButton_Click"/>
+            </Grid>
+            <Grid Grid.Row="5" Grid.Column="1" Margin="10,0,25,50">
+                <Button x:Name="CancelButton" Content="Отмена" Click="CancelButton_Click"/>
+            </Grid>
+        </Grid>
+    </Border>
+</UserControl>

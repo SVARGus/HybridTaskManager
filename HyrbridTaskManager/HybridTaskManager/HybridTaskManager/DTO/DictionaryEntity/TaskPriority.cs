@@ -5,6 +5,7 @@
         public Guid Id { get; set; }
         public string Name { get; set; }
         public int Level { get; set; } // можно использовать для сортировки по срочности
+
         public string HexColorCode { get; set; }
 
         public TaskPriority()

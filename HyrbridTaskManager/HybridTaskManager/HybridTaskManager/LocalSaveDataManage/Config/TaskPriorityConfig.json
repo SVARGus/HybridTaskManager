@@ -1,0 +1,26 @@
+[
+    {
+        "Id": "d290f1ee-6c54-4b01-90e6-d701748f0851",
+        "Name": "Низкий",
+        "Level": 0,
+        "HexColorCode": "#50ca3a"
+    },
+    {
+        "Id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "Name": "Средний",
+        "Level": 1,
+        "HexColorCode": "#b9ca3a"
+    },
+    {
+        "Id": "f7c53f4a-5c43-4d1e-9d55-7d2a2d432fba",
+        "Name": "Высокий",
+        "Level": 2,
+        "HexColorCode": "#ca893a"
+    },
+    {
+        "Id": "6e29fcb1-7d65-4a2d-b3cc-fb8f2b7efefb",
+        "Name": "Срочный",
+        "Level": 3,
+        "HexColorCode": "#ca3a3a"
+    }
+]

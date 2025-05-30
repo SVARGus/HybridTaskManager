@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="HybridTaskManager.UserConrols.KanbanColumnControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HybridTaskManager.UserConrols"
+             xmlns:models="clr-namespace:HybridTaskManager.DTO.DictionaryEntity"
+             Width="300" Margin="5">
+    <Border Background="#F0F0F0" BorderBrush="#CCC" BorderThickness="1" CornerRadius="6">
+        <Border.ContextMenu>
+            <ContextMenu>
+                <MenuItem Header="Добавить задачку" Click="AddTask_Click"/>
+                <MenuItem Header="Переименовать" Click="RenameColumn_Click"/>
+                <MenuItem Header="Удалить" Click="DeleteColumn_Click"/>
+                <MenuItem Header="Обновить" Click="RefreshColumn_Click"/>
+                <MenuItem Header="Копировать" Click="CopyColumn_Click"/>
+            </ContextMenu>
+        </Border.ContextMenu>
+        
+        <DockPanel>
+            <StackPanel Orientation="Vertical">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="{Binding Status.Name}" FontWeight="Bold" FontSize="14" Padding="10" Background="#DDD" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
+                    <Button Grid.Column="1" Content="＋" Width="24" Height="24" Margin="5,0,5,0" ToolTip="Добавить задачу" HorizontalAlignment="Right" Click="AddTask_Click"/>
+                </Grid>
+                <ItemsControl ItemsSource="{Binding Tasks}" DockPanel.Dock="Bottom" Margin="10">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <local:KanbanTaskCardControl DataContext="{Binding}" Margin="0,5" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </DockPanel>
+    </Border>
+</UserControl>
