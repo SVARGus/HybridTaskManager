@@ -9,17 +9,17 @@
              HorizontalAlignment="Stretch" 
              VerticalAlignment="Stretch">
 
-    <Border Background="White"
+    <Border Background="#FF2563EB"
             CornerRadius="10"
-            BorderBrush="Azure"
+            BorderBrush="White"
             BorderThickness="2"
             Padding="5">
 
         <Grid ShowGridLines="False">
-            
+
             <Grid.Resources>
                 <Style TargetType="Line">
-                    <Setter Property="Stroke" Value="Azure"/>
+                    <Setter Property="Stroke" Value="White"/>
                     <Setter Property="StrokeThickness" Value="2"/>
                 </Style>
             </Grid.Resources>
@@ -30,20 +30,18 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-           
             <TextBlock x:Name="DayOfWeekText" Grid.Row="0"
                        Text="День Недели"
                        FontSize="12"
+                       Foreground="White"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"/>
 
-            
             <Line Grid.Row="1"
                   X1="0" X2="1"
                   Stretch="Fill"
                   Margin="5,0"/>
 
-           
             <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -52,25 +50,24 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock x:Name="DayNumberText" Grid.Column="0"
-                       Text="30"
-                       FontSize="12"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Center"/>
+                           Text="30"
+                           FontSize="12"
+                           Foreground="White"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
 
-                
                 <Line Grid.Column="1"
                       Y1="0" Y2="1"
                       Stretch="Fill"
                       Margin="0,5"/>
 
                 <TextBlock x:Name="MonthText" Grid.Column="2"
-                       Text="Май"
-                       FontSize="12"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Center"/>
+                           Text="Май"
+                           FontSize="12"
+                           Foreground="White"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
             </Grid>
-            
-            
         </Grid>
     </Border>
 </UserControl>
